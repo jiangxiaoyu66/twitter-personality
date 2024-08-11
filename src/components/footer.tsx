@@ -1,4 +1,3 @@
-import { PiDiscordLogo, PiEnvelope, PiLinkedinLogo, PiXLogo } from 'react-icons/pi'
 
 import WordwareLogo from './logo'
 

@@ -1,8 +1,8 @@
 import Image from 'next/image'
 
-import logo from '@/app/favicon.png'
+// import logo from '../../public/favicon.png'
 
-const WordwareLogo = ({ emblemOnly = false, color, width }: { emblemOnly?: boolean; color: 'white' | 'black'; width: number }) => {
+const WordwareLogo = ({ emblemOnly = false, width }: { emblemOnly?: boolean; color: 'white' | 'black'; width: number }) => {
   if (emblemOnly) {
     return (
       // <svg
@@ -18,17 +18,16 @@ const WordwareLogo = ({ emblemOnly = false, color, width }: { emblemOnly?: boole
       //     fill={color}
       //   />
       // </svg>
-      <div className='flex items-center gap-2'> 
- <Image
-        src={logo}
-        alt={``}
+      <div className="flex items-center gap-2">
+        <Image
+          src={'/favicon.png'}
+          alt={``}
           width={width}
-        height={width * 0.15}
-        className="rounded-full"
-      />
-{/* <div className="self-center font-medium text-sm text-gray-850 dark:text-white">New Chat</div> */}
+          height={width * 0.15}
+          className="rounded-full"
+        />
+        {/* <div className="self-center font-medium text-sm text-gray-850 dark:text-white">New Chat</div> */}
       </div>
-     
     )
   }
   return (
@@ -49,24 +48,24 @@ const WordwareLogo = ({ emblemOnly = false, color, width }: { emblemOnly?: boole
     //     fill={color}
     //   />
     // </svg>
-  //   <Image
-  //   src={logo}
-  //   alt={``}
-  //       // width={width}
-  //       height={width * 0.15}
-  //   className="rounded-full"
-  // />
+    //   <Image
+    //   src={logo}
+    //   alt={``}
+    //       // width={width}
+    //       height={width * 0.15}
+    //   className="rounded-full"
+    // />
 
-  <div className='flex items-center gap-1'> 
-  <Image
-         src={logo}
-         alt={``}
-          //  width={width}
-           height={width * 0.15 }
-         className="rounded-full"
-       />
- <div className="self-center font-medium text-sm text-gray-850 dark:text-white">degpt.ai</div>
-       </div>
+    <div className="flex items-center gap-1">
+      <Image
+        src={'/favicon.png'}
+        alt={``}
+        //  width={width}
+        height={width * 0.15}
+        className="rounded-full"
+      />
+      <div className="text-gray-850 self-center text-sm font-medium dark:text-white">degpt.ai</div>
+    </div>
   )
 }
 

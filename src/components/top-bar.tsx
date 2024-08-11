@@ -1,5 +1,6 @@
 import Link from 'next/link'
-import { PiBrain, PiCaretLeft, PiXLogo } from 'react-icons/pi'
+// import { PiBrain, PiCaretLeft, PiXLogo } from 'react-icons/pi'
+import { PiCaretLeft,  } from 'react-icons/pi'
 
 import WordwareLogo from '@/components/logo'
 // import PHButton from '@/components/ph-button'

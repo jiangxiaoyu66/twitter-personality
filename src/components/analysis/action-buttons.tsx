@@ -1,7 +1,6 @@
 import { PiXLogo } from 'react-icons/pi'
 
 import WordwareLogo from '@/components/logo'
-import PHButton from '@/components/ph-button'
 import { Button } from '@/components/ui/button'
 
 type ActionButtonsProps = {

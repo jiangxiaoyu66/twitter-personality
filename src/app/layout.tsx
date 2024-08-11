@@ -4,10 +4,8 @@ import './globals.css'
 
 import { Analytics } from '@vercel/analytics/react'
 
-import Callout from '@/components/callout'
 import { DeveloperInfo } from '@/components/developer-info'
 import Footer from '@/components/footer'
-import { NewsletterForm } from '@/components/newsletter-form'
 import { getURL } from '@/lib/config'
 import Providers from '@/lib/providers'
 // import { cn } from '@/lib/utils'
