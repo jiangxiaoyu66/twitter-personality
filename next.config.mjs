@@ -29,6 +29,11 @@ const nextConfig = {
     // your project has type errors.
     // !! WARN !!
     ignoreBuildErrors: true,
+    ignoreDuringBuilds: true,
+
+   
+
+  
   },
   staticPageGenerationTimeout: 180,
 }

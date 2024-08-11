@@ -21,7 +21,7 @@ const Page = () => {
           <h2 className="flex items-center justify-start gap-4 pb-8">
             Powered by{' '}
             <a
-              href="https://wordware.ai/"
+              href="https://degpt.ai/"
               target="_blank">
               <WordwareLogo
                 color="black"
@@ -84,8 +84,8 @@ const Page = () => {
               <a
                 className="font-medium underline-offset-4 hover:underline"
                 target="_blank"
-                href="https://wordware.ai">
-                Wordware
+                href="https://de g p t.ai">
+                Degpt
               </a>
               , it will:
               <ul className="mt-2 list-disc space-y-1 pl-8">
@@ -104,10 +104,10 @@ const Page = () => {
                 <span
                   className="bg-clip-text font-bold text-transparent"
                   style={{ backgroundColor: '#CB9F9F' }}>
-                  support the Wordware launch!
+                  support the Degpt launch!
                 </span>
               </p>
-              <div className="flex flex-wrap gap-2">
+              {/* <div className="flex flex-wrap gap-2">
                 <PHButton />
                 <Button
                   variant={'outline'}
@@ -130,7 +130,7 @@ const Page = () => {
                     Stats
                   </Link>
                 </Button>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
@@ -140,7 +140,7 @@ const Page = () => {
           </div>
         </div>
       </div>
-      <TopList />
+      {/* <TopList /> */}
     </section>
   )
 }

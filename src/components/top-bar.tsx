@@ -21,7 +21,7 @@ const Topbar = () => {
               Homepage
             </Link>
           </Button>
-          <Button
+          {/* <Button
             size={'sm'}
             asChild
             variant={'outline'}>
@@ -31,10 +31,10 @@ const Topbar = () => {
               <PiBrain />
               Stats for nerds
             </Link>
-          </Button>
+          </Button> */}
         </div>
         <div className="flex w-full items-center justify-center gap-2 whitespace-nowrap">
-          Build your AI App for free in
+          Access your AI App for free in
           <a
             href="https://wordware.ai/"
             target="_blank">
@@ -55,7 +55,7 @@ const Topbar = () => {
               <PiCaretLeft />
             </Link>
           </Button>
-          <Button
+          {/* <Button
             size={'sm'}
             variant={'default'}
             asChild>
@@ -72,9 +72,9 @@ const Topbar = () => {
                 Duplicate <span className="hidden md:inline">this</span> AI Agent
               </p>
             </a>
-          </Button>
+          </Button> */}
           {/* <PHButton text="Support us!" /> */}
-          <Button
+          {/* <Button
             size={'sm'}
             variant={'outline'}
             asChild>
@@ -87,7 +87,7 @@ const Topbar = () => {
                 Follow <span className="hidden md:inline">us</span>
               </p>
             </a>
-          </Button>
+          </Button> */}
         </div>
       </div>
     </div>

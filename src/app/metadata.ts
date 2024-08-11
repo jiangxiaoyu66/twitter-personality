@@ -1,8 +1,8 @@
 import { getURL } from '@/lib/config'
 
 const siteMetadata = {
-  title: 'Twitter Personality - AI Agent by Wordware',
-  author: 'Wordware',
+  title: 'Twitter Personality - AI Agent by Degpt',
+  author: 'Degpt',
   headerTitle: 'Twitter Personality',
   description:
     'Twitter Personality is an AI Agent that analyzes your tweets to reveal the unique traits that make you, you. Discover insights about your online persona.',

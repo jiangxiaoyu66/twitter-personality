@@ -14,7 +14,7 @@ const ActionButtons = ({ shareActive, text, url }: ActionButtonsProps) => {
   return (
     <div className="flex flex-col gap-6">
       <div className="flex-center flex-wrap gap-4">
-        <PHButton text="Support us!" />
+        {/* <PHButton text="Support us!" /> */}
         {shareActive && (
           <Button
             size={'sm'}
@@ -22,7 +22,7 @@ const ActionButtons = ({ shareActive, text, url }: ActionButtonsProps) => {
             <a
               target="_blank"
               className="flex-center gap-2"
-              href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(text ?? `this is my Twitter Personality analysis by AI Agent, built on @wordware_ai`)}&url=${encodeURIComponent(url ?? `https://twitter.wordware.ai/`)}`}>
+              href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(text ?? `this is my Twitter Personality analysis by AI Agent, built on @DecentralGPT `)}&url=${encodeURIComponent(url ?? `https://x.degptac.ai/`)}`}>
               <PiXLogo /> Share
             </a>
           </Button>
@@ -33,13 +33,13 @@ const ActionButtons = ({ shareActive, text, url }: ActionButtonsProps) => {
           <a
             className="flex-center gap-2"
             target="_blank"
-            href="https://wordware.ai/">
+            href="https://degpt.ai/">
             <WordwareLogo
               emblemOnly
               color="white"
               width={20}
             />
-            Wordware
+            Degpt
           </a>
         </Button>
       </div>

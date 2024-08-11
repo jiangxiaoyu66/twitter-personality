@@ -44,7 +44,8 @@ export const useCompatibilityAnalysis = (user1: SelectUser, user2: SelectUser, p
     }
   }, [user1.username, user2.username, user1Steps, user2Steps, steps.compatibilityAnalysisStarted, pair.unlocked])
 
-  const handleCompatibilityAnalysis = async (props: { usernames: string[]; full: boolean; user1; user2 }) => {
+  const handleCompatibilityAnalysis = async ({user1,user2 }: { usernames: string[]; full: boolean; user1:any; user2: any }) => {
+    // const handleCompatibilityAnalysis = async (props: { usernames: string[]; full: boolean; user1:any; user2: any }) => {
     if (steps.compatibilityAnalysisStarted && Date.now() - pair.wordwareStartedTime.getTime() < 2 * 60 * 1000) {
       console.log('Not starting compatibility analysis', steps.compatibilityAnalysisStarted, Date.now() - pair.wordwareStartedTime.getTime())
       return

@@ -9,7 +9,7 @@ const Footer = () => {
         color={'white'}
         width={200}
       />
-      <div>
+      {/* <div>
         <div className="flex-center flex-col gap-6 md:flex-row md:gap-8">
           <a
             href="mailto:hello@wordware.ai"
@@ -42,8 +42,8 @@ const Footer = () => {
             LinkedIn
           </a>
         </div>
-      </div>
-      <p className="text-xs">Copyright © 2024 HeyDaily Inc. (dba Wordware)</p>
+      </div> */}
+      {/* <p className="text-xs">Copyright © 2024 HeyDaily Inc. (dba Wordware)</p> */}
     </div>
   )
 }

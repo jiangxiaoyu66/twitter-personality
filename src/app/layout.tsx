@@ -10,7 +10,7 @@ import Footer from '@/components/footer'
 import { NewsletterForm } from '@/components/newsletter-form'
 import { getURL } from '@/lib/config'
 import Providers from '@/lib/providers'
-import { cn } from '@/lib/utils'
+// import { cn } from '@/lib/utils'
 
 import siteMetadata from './metadata'
 
@@ -50,7 +50,7 @@ export const metadata = {
     card: 'summary_large_image',
     title: siteMetadata.title,
     description: siteMetadata.description,
-    creator: 'wordware',
+    creator: 'degpt',
     images: [siteMetadata.socialBanner],
   },
 }
@@ -77,14 +77,14 @@ export default function RootLayout({
             {children}
 
             {/* Callout section */}
-            <section className="w-full">
+            {/* <section className="w-full">
               <Callout />
-            </section>
+            </section> */}
 
             {/* Newsletter form section */}
-            <section className="pb-24">
+            {/* <section className="pb-24">
               <NewsletterForm />
-            </section>
+            </section> */}
 
             {/* Footer component */}
             <Footer />

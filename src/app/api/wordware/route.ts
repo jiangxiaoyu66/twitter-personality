@@ -8,7 +8,7 @@ import { TwitterAnalysis } from '@/components/analysis/analysis'
 export const maxDuration = 300
 
 /**
- * POST handler for the Wordware API route
+ * POST handler for the Degpt API route
  * @param {Request} request - The incoming request object
  * @returns {Promise<Response>} The response object
  */
@@ -16,7 +16,7 @@ export async function POST(request: Request) {
   // Extract username from the request body
   const { username, full } = await request.json()
 
-  // Fetch user data and check if Wordware has already been started
+  // Fetch user data and check if Degpt has already been started
   const user = await getUser({ username })
 
   if (!user) {
@@ -25,13 +25,13 @@ export async function POST(request: Request) {
 
   if (!full) {
     if (user.wordwareCompleted || (user.wordwareStarted && Date.now() - user.createdAt.getTime() < 3 * 60 * 1000)) {
-      return Response.json({ error: 'Wordware already started' })
+      return Response.json({ error: 'Degpt already started' })
     }
   }
 
   if (full) {
     if (user.paidWordwareCompleted || (user.paidWordwareStarted && Date.now() - user.createdAt.getTime() < 3 * 60 * 1000)) {
-      return Response.json({ error: 'Wordware already started' })
+      return Response.json({ error: 'Degpt already started' })
     }
   }
 
@@ -58,7 +58,7 @@ export async function POST(request: Request) {
 
   const promptID = full ? process.env.WORDWARE_FULL_PROMPT_ID : process.env.WORDWARE_ROAST_PROMPT_ID
 
-  // Make a request to the Wordware API
+  // Make a request to the Degpt API
   const runResponse = await fetch(`https://app.wordware.ai/api/released-app/${promptID}/run`, {
     method: 'POST',
     headers: {
@@ -84,7 +84,7 @@ export async function POST(request: Request) {
     return Response.json({ error: 'No reader' }, { status: 400 })
   }
 
-  // Update user to indicate Wordware has started
+  // Update user to indicate Degpt has started
   await updateUser({
     user: {
       ...user,
@@ -147,7 +147,7 @@ export async function POST(request: Request) {
                 controller.enqueue(value.value ?? '')
               }
             } else if (value.type === 'outputs') {
-              console.log('✨ Wordware:', value.values.output, '. Now parsing')
+              console.log('✨ Degpt:', value.values.output, '. Now parsing')
               try {
                 const statusObject = full
                   ? {
@@ -155,7 +155,7 @@ export async function POST(request: Request) {
                       paidWordwareCompleted: true,
                     }
                   : { wordwareStarted: true, wordwareCompleted: true }
-                // Update user with the analysis from Wordware
+                // Update user with the analysis from Degpt
                 await updateUser({
                   user: {
                     ...user,

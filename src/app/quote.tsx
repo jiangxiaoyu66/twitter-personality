@@ -5,10 +5,10 @@ const Quote: React.FC = () => {
   return (
     <div className="font-inter flex flex-col items-center space-y-8 rounded-lg p-8 text-center">
       <div className="flex flex-col items-center p-8">
-        <WordwareLogo
+        {/* <WordwareLogo
           color="black"
-          width={400}
-        />
+          width={100}
+        /> */}
         <p className="my-12 text-2xl font-normal text-[#1a1a1a]">— The easiest way to build AI apps —</p>
 
         <div className="mt-4 space-y-4 text-lg">

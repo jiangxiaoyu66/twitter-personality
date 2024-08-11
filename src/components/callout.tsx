@@ -45,7 +45,7 @@ const Callout = () => {
         </div>
       </div>
       <div className="flex-center flex-col gap-2 md:flex-row">
-        <Button
+        {/* <Button
           size={'lg'}
           variant={'default'}
           asChild>
@@ -60,9 +60,9 @@ const Callout = () => {
             />
             Duplicate Wordware AI Agent
           </a>
-        </Button>
+        </Button> */}
 
-        <Button
+        {/* <Button
           size={'lg'}
           variant={'outline'}
           asChild>
@@ -73,7 +73,7 @@ const Callout = () => {
             <PiGithubLogo />
             GitHub Repo
           </a>
-        </Button>
+        </Button> */}
       </div>
     </div>
   )

@@ -1,10 +1,10 @@
 'use client'
 
 import { useCallback } from 'react'
-import { useSearchParams } from 'next/navigation'
-import posthog from 'posthog-js'
+// import { useSearchParams } from 'next/navigation'
+// import posthog from 'posthog-js'
 
-import { PriceButton } from '@/components/analysis/paywall-card'
+// import { PriceButton } from '@/components/analysis/paywall-card'
 import { SelectUser } from '@/drizzle/schema'
 import { useTwitterAnalysis } from '@/hooks/twitter-analysis'
 import { analysisPlaceholder } from '@/lib/constants'
@@ -16,9 +16,9 @@ import { ProgressIndicator, StepIndicator } from './progress-indicator'
 
 const ResultComponent = ({ user }: { user: SelectUser }) => {
   const { steps, result } = useTwitterAnalysis(user)
-  const searchParams = useSearchParams()
+  // const searchParams = useSearchParams()
 
-  const paywallFlag = posthog.getFeatureFlag('paywall2') ?? searchParams.get('stripe')
+  // const paywallFlag = posthog.getFeatureFlag('paywall2') ?? searchParams.get('stripe')
 
   const prepareUserData = useCallback((result: TwitterAnalysis | undefined, unlocked: boolean): TwitterAnalysis | undefined => {
     if (!result) return undefined
@@ -51,8 +51,8 @@ const ResultComponent = ({ user }: { user: SelectUser }) => {
       )} */}
       <ActionButtons
         shareActive={!!result?.about}
-        text={`this is my Twitter Personality analysis by AI Agent, built on @wordware_ai`}
-        url={`https://twitter.wordware.ai/${user.username}`}
+        text={`this is my Twitter Personality analysis by AI Agent, built on @DecentralGPT `}
+        url={`https://x.degptac.ai/${user.username}`}
       />
 
       <div className="flex-center w-full flex-col gap-4">

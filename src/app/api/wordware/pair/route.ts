@@ -18,7 +18,7 @@ type TweetType = {
 }
 
 /**
- * POST handler for the Wordware API route
+ * POST handler for the Degpt API route
  * @param {Request} request - The incoming request object
  * @returns {Promise<Response>} The response object
  */
@@ -26,7 +26,7 @@ export async function POST(request: Request) {
   // Extract username from the request body
   const { usernames } = await request.json()
 
-  // Fetch user data and check if Wordware has already been started
+  // Fetch user data and check if Degpt has already been started
   const user1 = await getUser({ username: usernames[0] })
   const user2 = await getUser({ username: usernames[1] })
   const pair = await getPair({ usernames })
@@ -40,7 +40,7 @@ export async function POST(request: Request) {
   }
 
   if (pair.wordwareCompleted || (pair.wordwareStarted && Date.now() - pair.createdAt.getTime() < 3 * 60 * 1000)) {
-    return Response.json({ error: 'Wordware already started' })
+    return Response.json({ error: 'Degpt already started' })
   }
 
   function formatTweet(tweet: TweetType) {
@@ -84,7 +84,7 @@ export async function POST(request: Request) {
     throw Error(`No prompt id, please define WORDWARE_PAIR_PROMPT_ID environment variable`)
   }
 
-  // Make a request to the Wordware API
+  // Make a request to the Degpt API
   const runResponse = await fetch(`https://app.wordware.ai/api/released-app/${promptID}/run`, {
     method: 'POST',
     headers: {
@@ -111,7 +111,7 @@ export async function POST(request: Request) {
     return Response.json({ error: 'No reader' }, { status: 400 })
   }
 
-  // Update user to indicate Wordware has started
+  // Update user to indicate Degpt has started
   await updatePair({
     pair: {
       ...pair,
@@ -173,9 +173,9 @@ export async function POST(request: Request) {
                 controller.enqueue(value.value ?? '')
               }
             } else if (value.type === 'outputs') {
-              console.log('✨ Wordware:', value.values.output, '. Now parsing')
+              console.log('✨ Degpt:', value.values.output, '. Now parsing')
               try {
-                // Update user with the analysis from Wordware
+                // Update user with the analysis from Degpt
                 await updatePair({
                   pair: {
                     ...pair,

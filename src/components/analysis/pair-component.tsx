@@ -1,14 +1,14 @@
 'use client'
 
-import { useSearchParams } from 'next/navigation'
-import posthog from 'posthog-js'
+// import { useSearchParams } from 'next/navigation'
+// import posthog from 'posthog-js'
 
 import { SelectPair, SelectUser } from '@/drizzle/schema'
 import { useCompatibilityAnalysis } from '@/hooks/compatibility-analysis'
 
 import ActionButtons from './action-buttons'
 import Compatibility from './compatibility'
-import { CompatibilityPriceButton } from './compatibility-paywall-card'
+// import { CompatibilityPriceButton } from './compatibility-paywall-card'
 import { ProgressIndicator, StepIndicator } from './progress-indicator'
 
 const PairComponent = ({ users, pair }: { users: SelectUser[]; pair: SelectPair }) => {
@@ -16,9 +16,9 @@ const PairComponent = ({ users, pair }: { users: SelectUser[]; pair: SelectPair 
   console.log("tweets", users[0].tweets);
   
   const [user1, user2] = users.sort()
-  const searchParams = useSearchParams()
+  // const searchParams = useSearchParams()
   const { steps, user1Steps, user1Result, user2Steps, user2Result, compatibilityResult, unlocked } = useCompatibilityAnalysis(user1, user2, pair)
-  const paywallFlag = posthog.getFeatureFlag('paywall2') ?? searchParams.get('stripe')
+  // const paywallFlag = posthog.getFeatureFlag('paywall2') ?? searchParams.get('stripe')
 
 
   console.log("compatibilityResult", compatibilityResult);
@@ -54,8 +54,8 @@ const PairComponent = ({ users, pair }: { users: SelectUser[]; pair: SelectPair 
       {/* {!unlocked && <CompatibilityPriceButton price={paywallFlag as string} />} */}
       <ActionButtons
         shareActive={!!compatibilityResult?.about}
-        text={`this is my and ${user2.username}'s Compatibility analysis by AI Agent, built on @wordware_ai`}
-        url={`https://twitter.wordware.ai/${user1.username}/${user2.username}`}
+        text={`this is my and ${user2.username}'s Compatibility analysis by AI Agent, built on @DecentralGPT`}
+        url={`https://x.degptac.ai/${user1.username}/${user2.username}`}
       />
 
 
