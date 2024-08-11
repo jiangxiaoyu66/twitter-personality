@@ -107,7 +107,8 @@ export const useTwitterAnalysis = (user: SelectUser, disableAnalysis: boolean = 
   }
 
   const shouldRunTweetScrape = (user: SelectUser): boolean => {
-    const isUnlocked = PAYWALL ? user.unlocked || false : true
+    // const isUnlocked = PAYWALL ? user.unlocked || false : true
+    const isUnlocked = true
     return (
       (forceScrape || isUnlocked) &&
       (!user.tweetScrapeStarted || (!user.tweetScrapeCompleted && Date.now() - user.tweetScrapeStartedTime.getTime() > 1 * 60 * 1000))

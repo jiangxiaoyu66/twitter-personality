@@ -1,4 +1,4 @@
-import { Inter } from 'next/font/google'
+// import { Inter } from 'next/font/google'
 
 import './globals.css'
 
@@ -15,7 +15,7 @@ import { cn } from '@/lib/utils'
 import siteMetadata from './metadata'
 
 // Initialize the Inter font with Latin subset
-const inter = Inter({ subsets: ['latin'] })
+// const inter = Inter({ subsets: ['latin'] })
 
 /**
  * Metadata configuration for the application
@@ -70,7 +70,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={cn(inter.className, 'bg-[#F9FAFB] font-light')}>
+      <body >
         <Providers>
           <>
             {/* Main content area */}

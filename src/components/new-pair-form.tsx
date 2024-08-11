@@ -29,6 +29,8 @@ const NewPairForm = () => {
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     const cleanedUsername = cleanUsername(values.username)
+    console.log("这里执行了compare pair");
+    
     if (pathname.replace('/', '').toLowerCase() === cleanedUsername.toLowerCase()) {
       toast.error('You cannot pair with yourself')
       return

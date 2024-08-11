@@ -142,6 +142,8 @@ export const handleNewUsername = async ({ username, redirectPath }: { username: 
     }
   }
 
+  console.log("handleNewUsername在这里执行了", );
+
   let { data, error } = await fetchUserData({ screenName: username })
   if (error) {
     console.log(`[${username}] ⚠️ Profile TwitterAPI (1/3)`, error)

@@ -51,18 +51,29 @@ type TwitterUserData = {
 
 async function getGuestToken(): Promise<string> {
   try {
+    console.log(
+      "process.env.TWITTER_API_TOKEN", process.env.TWITTER_API_TOKEN
+    );
+    
     const response = await fetch('https://api.x.com/1.1/guest/activate.json', {
       method: 'POST',
       headers: {
         Authorization: `Bearer ${process.env.TWITTER_API_TOKEN}`,
       },
     })
+
+    console.log("getGuestToken response", response);
+    
     if (!response.ok) {
+
+      console.warn('getGuestToken报错:', response.statusText)
       throw new Error(`HTTP error! status: ${response.status}`)
     }
     const data = await response.json()
     return data.guest_token
   } catch (error) {
+    console.warn('getGuestToken报错2:', error)
+
     console.error('Error getting guest token:', error)
     throw new Error('Failed to obtain guest token')
   }
@@ -109,8 +120,13 @@ async function getUserData(screenName: string, guestToken: string): Promise<any>
 }
 
 export async function fetchUserData({ screenName }: { screenName: string }): Promise<{ data: DatabaseUser | null; error: string | null }> {
+  
+  debugger
+  console.log("fetchUserData在这里执行了", );
+  
   try {
     const guestToken = await getGuestToken()
+    console.log("getGuestToken在这里执行了", guestToken);
     const userData = await getUserData(screenName, guestToken)
 
     const user = userData.data.user.result.legacy as TwitterUserData

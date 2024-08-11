@@ -19,7 +19,7 @@ export const users = pgTable(
     tweets: jsonb('tweets'),
     analysis: jsonb('analysis'),
     followers: integer('followers'),
-    unlocked: boolean('unlocked').default(false),
+    unlocked: boolean('unlocked').default(true),
     unlockType: text('unlock_type').$type<'stripe' | 'email' | 'free'>(),
 
     //Statuses
@@ -57,7 +57,7 @@ export const pairs = pgTable(
       .references(() => users.lowercaseUsername),
     createdAt: timestamp('created_at').notNull().defaultNow(),
     analysis: jsonb('analysis'),
-    unlocked: boolean('unlocked').default(false),
+    unlocked: boolean('unlocked').default(true),
     unlockType: text('unlock_type').$type<'stripe' | 'email' | 'free'>(),
     wordwareStarted: boolean('wordware_started').default(false),
     wordwareStartedTime: timestamp('wordware_started_time').notNull().defaultNow(),

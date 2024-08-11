@@ -43,12 +43,12 @@ const ResultComponent = ({ user }: { user: SelectUser }) => {
         result={result}
         userUnlocked={user.unlocked || false}
       />
-      {!user.unlocked && (
+      {/* {!user.unlocked && (
         <PriceButton
           username={user.username}
           price={paywallFlag as string}
         />
-      )}
+      )} */}
       <ActionButtons
         shareActive={!!result?.about}
         text={`this is my Twitter Personality analysis by AI Agent, built on @wordware_ai`}
@@ -70,10 +70,10 @@ const ResultComponent = ({ user }: { user: SelectUser }) => {
       </div>
 
       <Analysis
-        unlocked={user.unlocked || false}
-        userData={prepareUserData(result, user.unlocked || false)}
+        unlocked={true}
+        userData={prepareUserData(result, true)}
       />
-      {!result?.loveLife && user.unlocked && (
+      {!result?.loveLife && true && (
         <StepIndicator
           started={steps.paidWordwareStarted}
           completed={steps.paidWordwareCompleted}
