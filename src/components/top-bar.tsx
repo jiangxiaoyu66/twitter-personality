@@ -41,7 +41,7 @@ const Topbar = () => {
             target="_blank">
             <WordwareLogo
               color="black"
-              width={134}
+              width={22}
             />
           </a>
         </div>
