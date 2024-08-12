@@ -5,6 +5,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { PiSpinner } from 'react-icons/pi'
 import { z } from 'zod'
+import { toast } from 'sonner'
 
 import { handleNewUsername } from '@/actions/actions'
 import { Button } from '@/components/ui/button'
@@ -32,7 +33,8 @@ const NewUsernameForm = () => {
     const response = await handleNewUsername({ username: cleanedUsername, redirectPath: `/${cleanedUsername}` })
 
     if (response?.error) {
-      window.location.href = 'https://tally.so/r/3lRoOp'
+      // window.location.href = 'https://tally.so/r/3lRoOp'
+      toast.error(response?.error)
     }
   }
 

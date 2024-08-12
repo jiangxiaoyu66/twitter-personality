@@ -52,7 +52,7 @@ const Analysis: React.FC<AnalysisProps> = ({ unlocked, userData }) => {
         {cardData.map((card, index) => (
           <React.Fragment key={card.contentKey}>
             {!unlocked && index === 1 && <PaywallCard />}
-            {index === 1 && <WordwareCard />}
+            {/* {index === 1 && <WordwareCard />} */}
             {index === 7 && <WordwareCard />}
             <AnalysisCard
               {...card}

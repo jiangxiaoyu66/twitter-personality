@@ -140,9 +140,9 @@ const AnalysisCard: React.FC<AnalysisCardProps> = ({ unlocked, title, icon: Icon
             <a
               href="https://wordware.ai?utm_source=twitterai"
               className="font-semibold underline-offset-4 hover:underline">
-              Wordware
+              DecentralGPT = DePIN+AI + AGI
             </a>{' '}
-            - AI superpowers for builders
+            - Decentralized LLM AI Inference Network
           </span>
         </CardFooter>
       </div>
