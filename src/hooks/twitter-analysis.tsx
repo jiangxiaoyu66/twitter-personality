@@ -5,6 +5,7 @@ import { TwitterAnalysis } from '@/components/analysis/analysis'
 import { SelectUser } from '@/drizzle/schema'
 import { PAYWALL } from '@/lib/config'
 import { parsePartialJson } from '@/lib/parse-partial-json'
+import { toast } from 'sonner'
 
 export type Steps = {
   profileScraped: boolean
@@ -141,7 +142,10 @@ export const useTwitterAnalysis = (user: SelectUser, disableAnalysis: boolean = 
       return true
     } catch (error) {
       console.error('Error processing scraped user:', error)
-      window.location.href = 'https://tally.so/r/3lRoOp'
+      if (error) {
+        toast.error('Error processing scraped user:', error)
+      }
+      // window.location.href = 'https://tally.so/r/3lRoOp'
       return false
     }
   }
