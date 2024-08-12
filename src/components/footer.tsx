@@ -6,7 +6,7 @@ const Footer = () => {
     <div className="flex-center w-full flex-col gap-14 bg-[#0E0E0E] px-6 py-4 text-center text-white">
       <WordwareLogo
         color={'white'}
-        width={200}
+        width={20}
       />
       {/* <div>
         <div className="flex-center flex-col gap-6 md:flex-row md:gap-8">

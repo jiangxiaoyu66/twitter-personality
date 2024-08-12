@@ -19,11 +19,11 @@ const WordwareLogo = ({ emblemOnly = false, width }: { emblemOnly?: boolean; col
       //   />
       // </svg>
       <div className="flex items-center gap-2">
-        <Image
+        <img
           src={'/favicon.png'}
           alt={``}
           width={width}
-          height={width * 0.15}
+          height={width}
           className="rounded-full"
         />
         {/* <div className="self-center font-medium text-sm text-gray-850 dark:text-white">New Chat</div> */}
@@ -57,11 +57,11 @@ const WordwareLogo = ({ emblemOnly = false, width }: { emblemOnly?: boolean; col
     // />
 
     <div className="flex items-center gap-1">
-      <Image
+      <img
         src={'/favicon.png'}
         alt={``}
-        //  width={width}
-        height={width * 0.15}
+        width={width}
+        height={width}
         className="rounded-full"
       />
       <a href="https://www.decentralgpt.org" target="_blank" className="text-gray-850 self-center text-sm font-medium dark:text-white">DecentralGPT</a>

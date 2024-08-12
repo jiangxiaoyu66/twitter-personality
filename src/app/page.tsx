@@ -20,7 +20,7 @@ const Page = () => {
               target="_blank">
               <WordwareLogo
                 color="black"
-                width={134}
+                width={20}
               />
             </a>
           </h2>
