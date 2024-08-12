@@ -16,17 +16,17 @@ export const WordwareCard: React.FC = () => {
               color={'black'}
               width={32}
             />
-            <span className={`text-xl font-light text-gray-900`}>Building in AI?</span>
+            <span className={`text-xl font-light text-gray-900`}>DecentralGPT = DePIN+AI + AGI</span>
           </div>
         </CardTitle>
         <div className="w-full border-b border-gray-300" />
       </CardHeader>
       <CardContent className="flex flex-col space-y-2 text-gray-700">
-        Wordware is a toolkit that enables anyone to build powerful AI Agents and applications with Natural Language.
+        DecentralGPT is Decentralized LLM AI Inference Network.
         <br />
-        <p>Build, iterate and deploy 20x faster with prebuilt tools, selection of all AI models, tracing, and more.</p>
+        <p>DecentralGPT supports a variety of open-source large language models.</p>
         <br />
-        <p>Finally, high-quality and reliable AI!</p>
+        <p>It is committed to building a safe, privacy-protective, democratic, transparent, open-source, and universally accessible AGI.</p>
         <div className="mt-8 py-4">
           <Button
             size={'sm'}
