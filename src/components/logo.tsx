@@ -64,7 +64,7 @@ const WordwareLogo = ({ emblemOnly = false, width }: { emblemOnly?: boolean; col
         height={width * 0.15}
         className="rounded-full"
       />
-      <div className="text-gray-850 self-center text-sm font-medium dark:text-white">degpt.ai</div>
+      <a href="https://www.decentralgpt.org" target="_blank" className="text-gray-850 self-center text-sm font-medium dark:text-white">DecentralGPT</a>
     </div>
   )
 }

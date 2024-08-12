@@ -33,7 +33,7 @@ export const WordwareCard: React.FC = () => {
             variant={'default'}
             asChild>
             <a
-              href={process.env.NEXT_PUBLIC_SHARED_APP_URL}
+              href="https://www.degpt.ai"
               target="_blank"
               className="flex-center gap-2">
               <WordwareLogo
@@ -41,7 +41,7 @@ export const WordwareCard: React.FC = () => {
                 color={'white'}
                 width={12}
               />
-              <p>Sign up today</p>
+              <p>DeGPT</p>
             </a>
           </Button>
         </div>

@@ -3,7 +3,7 @@ import WordwareLogo from './logo'
 
 const Footer = () => {
   return (
-    <div className="flex-center w-full flex-col gap-14 bg-[#0E0E0E] px-6 py-14 text-center text-white">
+    <div className="flex-center w-full flex-col gap-14 bg-[#0E0E0E] px-6 py-4 text-center text-white">
       <WordwareLogo
         color={'white'}
         width={200}

@@ -37,7 +37,7 @@ const Topbar = () => {
         <div className="flex w-full items-center justify-center gap-2 whitespace-nowrap">
           Access your AI App for free in
           <a
-            href="https://wordware.ai/"
+            href="https://www.degpt.ai"
             target="_blank">
             <WordwareLogo
               color="black"

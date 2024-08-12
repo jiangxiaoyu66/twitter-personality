@@ -13,16 +13,19 @@ const Page = () => {
     <section>
       <div className="flex flex-col md:flex-row">
         <div className="relative flex min-h-screen flex-col justify-center bg-[#F9FAFB] p-8 sm:p-12 md:w-1/2 md:p-16 lg:p-24">
-          <h2 className="flex items-center justify-start gap-4 pb-8">
+          <h2 className="flex items-center justify-start gap-4 pb-2">
             Powered by{' '}
             <a
-              href="https://degpt.ai/"
+              href="https://www.decentralgpt.org"
               target="_blank">
               <WordwareLogo
                 color="black"
                 width={134}
               />
             </a>
+          </h2>
+          <h2 className="flex items-center justify-start gap-4 pb-8">
+            GPU Support From DeepBrainChain
           </h2>
           <div className="grow" />
 
@@ -79,14 +82,14 @@ const Page = () => {
               <a
                 className="font-medium underline-offset-4 hover:underline"
                 target="_blank"
-                href="https://de g p t.ai">
-                Degpt
+                href="https://www.decentralgpt.org">
+                DecentralGPT
               </a>
               , it will:
               <ul className="mt-2 list-disc space-y-1 pl-8">
                 <li>find Twitter accounts online</li>
                 <li>will read your profile and tweets</li>
-                <li>then it will use Large Language Models - like the ones in ChatGPT - to analyse your personality</li>
+                <li>then it will use Large Language Models - like the ones in DecentralGPT - to analyse your personality</li>
                 <li>finally, it&apos;ll create a website with the analysis of your personality or compatibility</li>
               </ul>
             </div>
@@ -99,7 +102,7 @@ const Page = () => {
                 <span
                   className="bg-clip-text font-bold text-transparent"
                   style={{ backgroundColor: '#CB9F9F' }}>
-                  support the Degpt launch!
+                  support the DeGPT  launch! <br />GPU From DeepBrainChain AI Public Chain
                 </span>
               </p>
               {/* <div className="flex flex-wrap gap-2">
