@@ -54,26 +54,123 @@ export async function POST(request: Request) {
 
   const tweets = user.tweets as TweetType[]
 
+  console.log("tweets", tweets);
+  
+
   const tweetsMarkdown = tweets.map(formatTweet).join('\n---\n\n')
+
+  console.log('tweetsMarkdown', tweetsMarkdown);
 
   const promptID = full ? process.env.WORDWARE_FULL_PROMPT_ID : process.env.WORDWARE_ROAST_PROMPT_ID
 
-  // Make a request to the Degpt API
-  const runResponse = await fetch(`https://app.wordware.ai/api/released-app/${promptID}/run`, {
+  // // Make a request to the Degpt API
+  // const runResponse = await fetch(`https://app.wordware.ai/api/released-app/${promptID}/run`, {
+  //   method: 'POST',
+  //   headers: {
+  //     'Content-Type': 'application/json',
+  //     Authorization: `Bearer ${process.env.WORDWARE_API_KEY}`,
+  //   },
+  //   body: JSON.stringify({
+  //     inputs: {
+  //       tweets: `Tweets: ${tweetsMarkdown}`,
+  //       profilePicture: user.profilePicture,
+  //       profileInfo: user.fullProfile,
+  //       version: '^1.0',
+  //     },
+  //   }),
+  // })
+
+
+  const runResponse = await fetch(`https://chat.degpt.ai/api/v0/chat/completion`, {
     method: 'POST',
     headers: {
+      // Authorization: `Bearer ${token}`,
       'Content-Type': 'application/json',
-      Authorization: `Bearer ${process.env.WORDWARE_API_KEY}`,
     },
     body: JSON.stringify({
-      inputs: {
-        tweets: `Tweets: ${tweetsMarkdown}`,
-        profilePicture: user.profilePicture,
-        profileInfo: user.fullProfile,
-        version: '^1.0',
-      },
+      model: 'Qwen2-72B',
+      messages: [
+        {
+          role: 'system',
+          content: `请根据以下两个用户的基本信息和他们的10条推文，生成一份详细的关系分析报告。报告应严格按照以下格式输出，并包括指定的内容。不需要其他描述信息，直接返回json数据就好！返回数据统一用英文
+
+**输出格式：**
+
+{
+"mbti": {
+  "profile1": "{MBTI1}",
+  "profile2": "{MBTI2}"
+},
+"about": "{概括两人总体关系的描述}",
+"crazy": "{描述他们关系中较为疯狂或不可预测的元素}",
+"drama": "{分析他们关系中可能出现的冲突或戏剧性事件}",
+"emojis": "{用适当的表情符号总结他们关系的特点}",
+"divorce": "{评估他们关系破裂的可能性}",
+"marriage": "{预测他们婚姻的潜在发展}",
+"3rd_wheel": "{分析第三者介入的可能性}",
+"free_time": "{描述他们在空闲时间的兴趣爱好和活动，并评估这些是否契合}",
+"red_flags": {
+  "profile1": ["{可能导致关系紧张的Profile1的警告信号}"],
+  "profile2": ["{可能导致关系紧张的Profile2的警告信号}"]
+},
+"dealbreaker": "{描述可能导致关系终结的关键因素}",
+"green_flags": {
+  "profile1": ["{关系中的积极元素Profile1}"],
+  "profile2": ["{关系中的积极元素Profile2}"]
+},
+"follower_flex": "{对比他们在社交媒体上的影响力}",
+"risk_appetite": "{讨论他们在生活或决策中的风险偏好}",
+"love_languages": "{分析他们各自偏好的爱的表达方式}",
+"secret_desires": "{推测他们各自的潜在需求和渴望}",
+"friends_forever": "{预测他们在友谊中的表现和长久性}",
+"jealousy_levels": "{分析他们各自的嫉妒心}",
+"attachment_style": "{描述他们的依恋类型}",
+"values_alignment": "{评估他们在价值观上的一致性}",
+"breakup_percentage": "{分手的可能性百分比}",
+"overall_compatibility": "{整体契合度评分}",
+"personality_type_match": "{性格类型的匹配度}",
+"emotional_compatibility": "{情感契合度}",
+"financial_compatibility": "{财务契合度}",
+"communication_style_compatibility": "{沟通风格的一致性}"
+}
+`,
+        },
+        // {
+        //   "role": "assistant",
+        //   "content": "好的，我明白了"
+        // },
+
+        {
+          role: 'user',
+          content: `
+           这里面说啥了？
+
+            `,
+          // "content": `你好`
+        },
+        //   {
+        //     "role": "assistant",
+        //     "content": "好的，我明白了"
+        //   },
+        //   {
+        //     "role": "user",
+        //     "content": `
+        //     `
+
+        //     // "content": `你好`
+        // },
+      ],
+      project: 'DecentralGPT',
+      node_id: '16Uiu2HAmPKuJU5VE2PCnydyUn1VcTN2Lt59UDJFFEiRbb7h1x4CV',
+      stream: true,
     }),
+  }).catch((err) => {
+    console.log('err', err)
+    return null
   })
+
+  console.log("runResponse", runResponse)
+
 
   // console.log('🟣 | file: route.ts:40 | POST | runResponse:', runResponse)
   // Get the reader from the response body
@@ -105,6 +202,8 @@ export async function POST(request: Request) {
       try {
         while (true) {
           const { done, value } = await reader.read()
+          console.log("value, done", done, value);
+          
 
           if (done) {
             controller.close()

@@ -50,7 +50,7 @@ export const ProgressIndicator = ({
             text="Creating your Personality"
           />
 
-          {!result?.loveLife && userUnlocked && (
+          {/* {!result?.loveLife && userUnlocked && (
             <StepIndicator
               started={steps.paidWordwareStarted}
               completed={steps.paidWordwareCompleted}
@@ -58,7 +58,7 @@ export const ProgressIndicator = ({
               unlocked={userUnlocked}
               text="Extending your Personality"
             />
-          )}
+          )} */}
         </>
       )}
     </div>

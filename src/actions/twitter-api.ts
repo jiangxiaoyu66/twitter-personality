@@ -121,7 +121,6 @@ async function getUserData(screenName: string, guestToken: string): Promise<any>
 
 export async function fetchUserData({ screenName }: { screenName: string }): Promise<{ data: DatabaseUser | null; error: string | null }> {
   
-  debugger
   console.log("fetchUserData在这里执行了", );
   
   try {

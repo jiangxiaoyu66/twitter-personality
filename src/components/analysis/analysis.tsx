@@ -38,6 +38,9 @@ type AnalysisProps = {
 const Analysis: React.FC<AnalysisProps> = ({ unlocked, userData }) => {
   // const streamingStarted = !!userData?.about
 
+  console.log("unlocked, userData", unlocked, userData);
+  
+
   return (
     <div className="w-full max-w-6xl">
       <div className="text-center text-4xl tracking-widest">{userData?.emojis}</div>

@@ -16,11 +16,20 @@ import { ProgressIndicator, StepIndicator } from './progress-indicator'
 
 const ResultComponent = ({ user }: { user: SelectUser }) => {
   const { steps, result } = useTwitterAnalysis(user)
+
+
+  console.log("useTwitterAnalysis(user)",steps, result );
+  
+
   // const searchParams = useSearchParams()
 
   // const paywallFlag = posthog.getFeatureFlag('paywall2') ?? searchParams.get('stripe')
 
   const prepareUserData = useCallback((result: TwitterAnalysis | undefined, unlocked: boolean): TwitterAnalysis | undefined => {
+
+    console.log("prepareUserData result", result);
+    
+
     if (!result) return undefined
     if (!result.roast) return result
 
@@ -38,6 +47,7 @@ const ResultComponent = ({ user }: { user: SelectUser }) => {
 
   return (
     <div className="flex-center flex-col gap-8">
+
       <ProgressIndicator
         steps={steps}
         result={result}
@@ -73,13 +83,13 @@ const ResultComponent = ({ user }: { user: SelectUser }) => {
         unlocked={true}
         userData={prepareUserData(result, true)}
       />
-      {!result?.loveLife && true && (
+      {/* {!result?.loveLife && true && (
         <StepIndicator
           started={steps.paidWordwareStarted}
           completed={steps.paidWordwareCompleted}
           text="Extending your Personality"
         />
-      )}
+      )} */}
     </div>
   )
 }
