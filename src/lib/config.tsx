@@ -66,6 +66,8 @@ After understanding them, answer the following questions. You can make assumptio
 
 Be creative like a horoscope teller.
 
+输出的对象中的value，看我待会儿给你的内容原本主要是什么语言，你就返回什么语言，默认英文
+
 **输出格式：**
 
 {
@@ -106,7 +108,6 @@ Be creative like a horoscope teller.
   "communication_style_compatibility": "{沟通风格的一致性}"
 }
 `
-
 
 export const SinglePersonPrompt = `# **Instructions**
 
@@ -155,7 +156,7 @@ After understanding them, answer the following questions. You can make assumptio
 
 Be creative like a horoscope teller.
 
-输出的对象中的value，看我待会儿给你的内容原本主要是什么语言，你就返回什么语言
+输出的对象中的value，看我待会儿给你的内容原本主要是什么语言，你就返回什么语言，默认英文
 
 **输出格式：**
 

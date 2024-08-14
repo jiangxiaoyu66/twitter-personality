@@ -63,6 +63,7 @@ const ResultComponent = ({ user }: { user: SelectUser }) => {
         shareActive={!!result?.about}
         text={`this is my Twitter Personality analysis by AI Agent, built on @DecentralGPT `}
         url={`https://x.degpt.ai/${user.username}`}
+        tags={`DecentralGPT,DGC`}
       />
 
       <div className="flex-center w-full flex-col gap-4">
