@@ -32,7 +32,9 @@ const Quote: React.FC = () => {
             </Button> */}
 
             <div className="items-center flex-col px-20">
-              <a className="mb-5 flex-1 items-center bg-[#b88e56]  text-white gap-[0.38rem] cursor-pointer flex justify-center py-3.5 px-8 rounded-full" href="https://www.degpt.ai">
+              <a 
+              target="_blank"
+              className="mb-5 flex-1 items-center bg-[#b88e56]  text-white gap-[0.38rem] cursor-pointer flex justify-center py-3.5 px-8 rounded-full" href="https://www.degpt.ai">
                 <span>Get Started</span>
               </a >
               

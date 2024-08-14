@@ -13,7 +13,8 @@ import PairComponent from '../../../components/analysis/pair-component'
 const PairPage = async ({ params: { username, usernamePair } }: { params: { username: string; usernamePair: string } }) => {
   console.log('Page for', username, 'and', usernamePair)
   //ALWAYS SORT THE USER IDS SO WE CAN USE THEM AS KEYS
-  const [username1, username2] = [username, usernamePair].sort()
+  // const [username1, username2] = [username, usernamePair].sort()
+  const [username1, username2] = [username, usernamePair]
   const pair = await getPair({ usernames: [username1, username2] })
 
   // User pairs have to have been created before getting to this page
@@ -74,7 +75,7 @@ export async function generateMetadata({ params, searchParams }: { params: { use
   imageParams.set('username2', user2.username || '')
   imageParams.set('picture2', user2.profilePicture || '')
   imageParams.set('section', section)
-  imageParams.set('content', JSON.stringify(content))
+  imageParams.set('content', JSON.stringify(content || ''))
 
   const image = {
     alt: 'Pair Banner',

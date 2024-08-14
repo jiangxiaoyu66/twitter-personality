@@ -8,7 +8,7 @@ import { TwitterAnalysis } from '@/components/analysis/analysis'
 export const maxDuration = 300
 
 /**
- * POST handler for the Degpt API route
+ * POST handler for the DeGPT API route
  * @param {Request} request - The incoming request object
  * @returns {Promise<Response>} The response object
  */
@@ -16,7 +16,7 @@ export async function POST(request: Request) {
   // Extract username from the request body
   const { username, full } = await request.json()
 
-  // Fetch user data and check if Degpt has already been started
+  // Fetch user data and check if DeGPT has already been started
   const user = await getUser({ username })
 
   if (!user) {
@@ -25,13 +25,13 @@ export async function POST(request: Request) {
 
   if (!full) {
     if (user.wordwareCompleted || (user.wordwareStarted && Date.now() - user.createdAt.getTime() < 3 * 60 * 1000)) {
-      return Response.json({ error: 'Degpt already started' })
+      return Response.json({ error: 'DeGPT already started' })
     }
   }
 
   if (full) {
     if (user.paidWordwareCompleted || (user.paidWordwareStarted && Date.now() - user.createdAt.getTime() < 3 * 60 * 1000)) {
-      return Response.json({ error: 'Degpt already started' })
+      return Response.json({ error: 'DeGPT already started' })
     }
   }
 
@@ -61,9 +61,9 @@ export async function POST(request: Request) {
 
   console.log('tweetsMarkdown', tweetsMarkdown);
 
-  const promptID = full ? process.env.WORDWARE_FULL_PROMPT_ID : process.env.WORDWARE_ROAST_PROMPT_ID
+  // const promptID = full ? process.env.WORDWARE_FULL_PROMPT_ID : process.env.WORDWARE_ROAST_PROMPT_ID
 
-  // // Make a request to the Degpt API
+  // // Make a request to the DeGPT API
   // const runResponse = await fetch(`https://app.wordware.ai/api/released-app/${promptID}/run`, {
   //   method: 'POST',
   //   headers: {
@@ -181,7 +181,7 @@ export async function POST(request: Request) {
     return Response.json({ error: 'No reader' }, { status: 400 })
   }
 
-  // Update user to indicate Degpt has started
+  // Update user to indicate DeGPT has started
   await updateUser({
     user: {
       ...user,
@@ -246,7 +246,7 @@ export async function POST(request: Request) {
                 controller.enqueue(value.value ?? '')
               }
             } else if (value.type === 'outputs') {
-              console.log('✨ Degpt:', value.values.output, '. Now parsing')
+              console.log('✨ DeGPT:', value.values.output, '. Now parsing')
               try {
                 const statusObject = full
                   ? {
@@ -254,7 +254,7 @@ export async function POST(request: Request) {
                       paidWordwareCompleted: true,
                     }
                   : { wordwareStarted: true, wordwareCompleted: true }
-                // Update user with the analysis from Degpt
+                // Update user with the analysis from DeGPT
                 await updateUser({
                   user: {
                     ...user,

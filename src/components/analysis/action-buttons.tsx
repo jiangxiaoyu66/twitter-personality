@@ -21,7 +21,7 @@ const ActionButtons = ({ shareActive, text, url }: ActionButtonsProps) => {
             <a
               target="_blank"
               className="flex-center gap-2"
-              href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(text ?? `this is my Twitter Personality analysis by AI Agent, built on @DecentralGPT `)}&url=${encodeURIComponent(url ?? `https://x.degptac.ai/`)}`}>
+              href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(text ?? `this is my Twitter Personality analysis by AI Agent, built on @DecentralGPT `)}&url=${encodeURIComponent(url ?? `https://x.degpt.ai/`)}`}>
               <PiXLogo /> Share
             </a>
           </Button>
@@ -38,7 +38,7 @@ const ActionButtons = ({ shareActive, text, url }: ActionButtonsProps) => {
               color="white"
               width={20}
             />
-            Degpt
+            DeGPT
           </a>
         </Button>
       </div>

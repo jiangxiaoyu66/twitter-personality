@@ -55,7 +55,7 @@ const PairComponent = ({ users, pair }: { users: SelectUser[]; pair: SelectPair 
       <ActionButtons
         shareActive={!!compatibilityResult?.about}
         text={`this is my and ${user2.username}'s Compatibility analysis by AI Agent, built on @DecentralGPT`}
-        url={`https://x.degptac.ai/${user1.username}/${user2.username}`}
+        url={`https://x.degpt.ai/${user1.username}/${user2.username}`}
       />
 
 

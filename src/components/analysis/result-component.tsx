@@ -12,7 +12,7 @@ import { analysisPlaceholder } from '@/lib/constants'
 import NewPairForm from '../new-pair-form'
 import ActionButtons from './action-buttons'
 import { Analysis, TwitterAnalysis } from './analysis'
-import { ProgressIndicator, StepIndicator } from './progress-indicator'
+import { ProgressIndicator } from './progress-indicator'
 
 const ResultComponent = ({ user }: { user: SelectUser }) => {
   const { steps, result } = useTwitterAnalysis(user)
@@ -62,7 +62,7 @@ const ResultComponent = ({ user }: { user: SelectUser }) => {
       <ActionButtons
         shareActive={!!result?.about}
         text={`this is my Twitter Personality analysis by AI Agent, built on @DecentralGPT `}
-        url={`https://x.degptac.ai/${user.username}`}
+        url={`https://x.degpt.ai/${user.username}`}
       />
 
       <div className="flex-center w-full flex-col gap-4">

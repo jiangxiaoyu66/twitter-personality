@@ -19,6 +19,19 @@ export async function GET(request: NextRequest) {
   const content = searchParams.get('content') || ''
   const section = searchParams.get('section') || ''
 
+
+  console.log(777, {
+    picture1,
+    name1,
+    username1,
+    picture2,
+    name2,
+    username2,
+    content,
+    section,
+  });
+  
+
   try {
     return new ImageResponse(
       generatePairOG({

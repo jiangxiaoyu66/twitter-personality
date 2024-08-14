@@ -1,10 +1,11 @@
 import { useEffect, useRef, useState } from 'react'
+import { updateUser } from '@/actions/actions'
 
 import { processScrapedUser } from '@/actions/actions'
 import { TwitterAnalysis } from '@/components/analysis/analysis'
 import { SelectUser } from '@/drizzle/schema'
-import { PAYWALL } from '@/lib/config'
-import { parsePartialJson } from '@/lib/parse-partial-json'
+import { PAYWALL , SinglePersonPrompt} from '@/lib/config'
+// import { parsePartialJson } from '@/lib/parse-partial-json'
 import { toast } from 'sonner'
 
 export type Steps = {
@@ -70,45 +71,45 @@ export const useTwitterAnalysis = (user: SelectUser, disableAnalysis: boolean = 
     }
   }
 
-  const handleTweetAnalysis = async (props: { username: string; full: boolean; currentAnalysis?: TwitterAnalysis | undefined }) => {
-    const response = await fetch('/api/wordware', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(props),
-    })
+  // const handleTweetAnalysis = async (props: { username: string; full: boolean; currentAnalysis?: TwitterAnalysis | undefined }) => {
+  //   const response = await fetch('/api/wordware', {
+  //     method: 'POST',
+  //     headers: { 'Content-Type': 'application/json' },
+  //     body: JSON.stringify(props),
+  //   })
 
-    if (!response.body) {
-      console.error('No response body')
-      return
-    }
+  //   if (!response.body) {
+  //     console.error('No response body')
+  //     return
+  //   }
 
-    const reader = response.body.getReader()
-    const decoder = new TextDecoder()
-    let result = ''
+  //   const reader = response.body.getReader()
+  //   const decoder = new TextDecoder()
+  //   let result = ''
 
-    try {
-      while (true) {
-        const { done, value } = await reader.read()
-        if (done) break
+  //   try {
+  //     while (true) {
+  //       const { done, value } = await reader.read()
+  //       if (done) break
 
-        result += decoder.decode(value, { stream: true })
+  //       result += decoder.decode(value, { stream: true })
 
-        const parsed = parsePartialJson(result) as TwitterAnalysis
+  //       const parsed = parsePartialJson(result) as TwitterAnalysis
 
-        const existingAnalysis = {
-          ...(user.analysis as TwitterAnalysis),
-          ...props.currentAnalysis,
-        }
+  //       const existingAnalysis = {
+  //         ...(user.analysis as TwitterAnalysis),
+  //         ...props.currentAnalysis,
+  //       }
 
-        setResult({ ...existingAnalysis, ...parsed })
-      }
-    } catch (error) {
-      console.error('Error reading stream', error)
-    } finally {
-      reader.releaseLock()
-      return parsePartialJson(result)
-    }
-  }
+  //       setResult({ ...existingAnalysis, ...parsed })
+  //     }
+  //   } catch (error) {
+  //     console.error('Error reading stream', error)
+  //   } finally {
+  //     reader.releaseLock()
+  //     return parsePartialJson(result)
+  //   }
+  // }
 
   const shouldRunTweetScrape = (user: SelectUser): boolean => {
     // const isUnlocked = PAYWALL ? user.unlocked || false : true
@@ -127,15 +128,15 @@ export const useTwitterAnalysis = (user: SelectUser, disableAnalysis: boolean = 
     )
   }
 
-  const shouldRunPaidWordwareAnalysis = (user: SelectUser, result: TwitterAnalysis | undefined): boolean => {
-    return (
-      (!user.paidWordwareCompleted &&
-        (!result || !result.loveLife) &&
-        ((user.unlocked && !user.paidWordwareStarted) ||
-          (user.unlocked && !user.paidWordwareCompleted && Date.now() - user.paidWordwareStartedTime.getTime() > 60 * 1000))) ||
-      false
-    )
-  }
+  // const shouldRunPaidWordwareAnalysis = (user: SelectUser, result: TwitterAnalysis | undefined): boolean => {
+  //   return (
+  //     (!user.paidWordwareCompleted &&
+  //       (!result || !result.loveLife) &&
+  //       ((user.unlocked && !user.paidWordwareStarted) ||
+  //         (user.unlocked && !user.paidWordwareCompleted && Date.now() - user.paidWordwareStartedTime.getTime() > 60 * 1000))) ||
+  //     false
+  //   )
+  // }
 
   const runTweetScrape = async (user: SelectUser, setSteps: React.Dispatch<React.SetStateAction<Steps>>): Promise<boolean> => {
     setSteps((prev) => ({ ...prev, tweetScrapeStarted: true }))
@@ -159,144 +160,118 @@ export const useTwitterAnalysis = (user: SelectUser, disableAnalysis: boolean = 
 
     // const result = await handleTweetAnalysis({ username: user.username, full: false })
 
-    const res = await fetch(`https://chat.degpt.ai/api/v0/chat/completion`, {
-      method: 'POST',
-      headers: {
-        // Authorization: `Bearer ${token}`,
-        'Content-Type': 'application/json',
+    // const res = await fetch(`https://chat.degpt.ai/api/v0/chat/completion`, {
+    //   method: 'POST',
+    //   headers: {
+    //     // Authorization: `Bearer ${token}`,
+    //     'Content-Type': 'application/json',
+    //   },
+    //   body: JSON.stringify({
+    //     model: 'Qwen2-72B',
+    //     messages: [
+    //       {
+    //         role: 'system',
+    //         content: SinglePersonPrompt,
+    //       },
+    //       {
+    //         role: 'user',
+    //         content: `
+    //           数据如下：${JSON.stringify(user, null, 2)}
+    //           `,
+    //       },
+     
+    //     ],
+    //     project: 'DecentralGPT',
+    //     node_id: '16Uiu2HAmPKuJU5VE2PCnydyUn1VcTN2Lt59UDJFFEiRbb7h1x4CV',
+    //     stream: false,
+    //   }),
+    // }).catch((err) => {
+    //   console.log('err', err)
+    //   return null
+    // })
+    // const json = await res?.json()
+    // const resultString = json.data.choices[0].message.content
+
+    // const result = JSON.parse(resultString)
+    // console.log('res11111', result)
+    const models = [
+
+      {
+        name: "Meta LLM (Llama-3.1-405B)",
+        model: "Llama-3.1-405B",
+        nodeList: ["16Uiu2HAmBcP2Zv51z4VA8UnHRNRjatyHcv4TSuU6pXixLELP1U7F"],
       },
-      body: JSON.stringify({
-        model: 'Qwen2-72B',
-        messages: [
-          {
-            role: 'system',
-            content: `# **Instructions**
+      {
+        name: "Ali LLM (Qwen2-72B)",
+        model: "Qwen2-72B",
+        nodeList: ["16Uiu2HAmPKuJU5VE2PCnydyUn1VcTN2Lt59UDJFFEiRbb7h1x4CV"],
+      },
+      {
+        name: "Google LLM (Gemma-2-27B)",
+        model: "Gemma-2-27B",
+        nodeList: ["16Uiu2HAmPKuJU5VE2PCnydyUn1VcTN2Lt59UDJFFEiRbb7h1x4CV"],
+      },
+    ];
+    
+    async function tryModels(models: any, SinglePersonPrompt: any, user: any) {
+      for (let i = 0; i < models.length; i++) {
+        const model = models[i];
+        try {
+          const res = await fetch(`https://chat.degpt.ai/api/v0/chat/completion`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              model: model.model,
+              messages: [
+                {
+                  role: 'system',
+                  content: SinglePersonPrompt,
+                },
+                {
+                  role: 'user',
+                  content: `
+                    数据如下：${JSON.stringify(user, null, 2)}
+                  `,
+                },
+              ],
+              project: 'DecentralGPT',
+              node_id: model.nodeList[0],
+              stream: false,
+            }),
+          });
+          
+          if (res.ok) {
+            const datares = await res.json();
+            if( datares.data.choices[0].message.content ) {
+              return JSON.parse(datares.data.choices[0].message.content); // 成功返回数据
+            }
+            else {
 
-You are an experienced Astrologer who specializes in writing Horoscopes. Act like a horoscope teller.
-
-Your job is to read the data provided below. This Twitter data is the only data you get to understand this person. You can make assumptions. Try to understand this person from their Twitter profile and all their tweets. You can sound a little controversial.
-
-After understanding them, answer the following questions. You can make assumptions.  
-
-*   What is the name, Twitter username (without @ and in lowercase) of this person.
+            }
+          } else {
+            console.log(`Model ${model.name} failed with status ${res.status}`);
+          }
+        } catch (err) {
+          console.log(`Model ${model.name} encountered an error:`, err);
+        }
+      }
+      
+      return null; // 如果所有模型都失败，则返回null
+    }
     
-*   Give a one-line description About this person, including age, sex, job, and other interesting info. This can be drawn from the profile picture. Start the sentence with "Based on our AI agent's analysis of your tweets...."
+    // 使用方法
+    const result = await tryModels(models, SinglePersonPrompt, user);
     
-
-*   5 strongest strengths and 5 biggest weaknesses (when describing weaknesses, be brutal).
-    
-
-*   Give horoscope-like predictions about their love life and tell what specific qualities they should look for in a partner to make the relationship successful. Keep this positive and only a single paragraph.
-    
-*   Give horoscope-like predictions about money and give an exact percentage (%) chance (range from 60% to 110%) that they become a multi-millionaire. You can increment the value by 1%. The percentage doesn't have to end with 5 or 0. Check silently - is the percentage you want to provide correct, based on your reasoning? If yes, produce it. If not, change it.
-    
-*   Give horoscope-like predictions about health. Keep this optimistic and only a single paragraph.
-    
-*   After understanding them, tell them what is their biggest goal in life. This should be completely positive.
-    
-*   Guess how they are to work with, from a colleague’s perspective. Make this spicy and a little controversial.
-    
-*   Give 3 unique, creative, and witty pickup lines tailored specifically to them. Focus on their interests and what they convey through their tweets. Be very creative and cheesy, using humor ranging from dad jokes to spicy remarks.
-    
-*   Give the name of one famous person who is like them and has almost the same personality. Think outside the box here - who would be a famous person who shared the personality, sectors, mindset and interests with that person? Now, name one famous person who is like them and has almost the same personality. Don't provide just people who are typical. Be creative. Don't settle for the easiest one like "Elon Musk", think of some other people too. Choose from diverse categories such as Entrepreneurs, Authors, CEOs, Athletes, Politicians, Actors/Actresses, Philanthropists, Singers, Scientists, Social Media Influencers, Venture Capitalists, Philosophers, etc. Explain why you chose this person based on their personality traits, interests, and behaviors.
-    
-*   Previous Life. Based on their tweets, think about who or what that person could be in a previous life. Refer to the “About” section to find a similar profile from the past. Who might they have shared a personality and mindset with? Name one person. Be humorous, witty, and bold. Explain your choice.
-    
-*   Animal. Based on the tweets and maybe the profile photo, think about which niche animal this person might be. Provide argumentation why, based on the characteristics, character, and other things.
-    
-*   Under a 50-dollar thing, they would benefit from the most. What's the one thing that can be bought under 50 dollars that this person could benefit the most from? Make it very personal and accurate when it comes to the price. But be extremely creative. Try to suggest a thing this person wouldn't think of themselves.
-    
-*   Career. Describe what that person was born to do. What should that person devote their life to? Explain why and how they can achieve that, what the stars are telling.
-    
-*   Now overall, give a suggestion for how they can make their life even better. Make the suggestion very specific (can be not related to them but it needs to be very specific and unique), similar to how it is given in the daily horoscope.
-    
-*   Roast. <Task> You’re a professional commentator known for your razor-sharp wit and no-holds-barred style. Your job is to roast people based on their twitter data. Don't comment on wardrobe choices. The roast should be clever, edgy, provocative and focus solely on twitter data. Aim for roasts that are brutal. </Task>
-    
-*   Emojis - Describe a person using only emojis.  
+    if (result) {
+      console.log('成功获取结果:', result);
+    } else {
+      console.log('所有模型都失败了');
+    }
     
 
-Be creative like a horoscope teller.
 
-输出的对象中的value，看我待会儿给你的内容原本主要是什么语言，你就返回什么语言
-
-**输出格式：**
-
-{
-  "mbti": {
-    "profile1": "{MBTI1}",
-    "profile2": "{MBTI2}"
-  },
-  "about": "{概括两人总体关系的描述}",
-  "crazy": "{描述他们关系中较为疯狂或不可预测的元素}",
-  "drama": "{分析他们关系中可能出现的冲突或戏剧性事件}",
-  "emojis": "{用适当的表情符号总结他们关系的特点}",
-  "divorce": "{评估他们关系破裂的可能性}",
-  "marriage": "{预测他们婚姻的潜在发展}",
-  "3rd_wheel": "{分析第三者介入的可能性}",
-  "free_time": "{描述他们在空闲时间的兴趣爱好和活动，并评估这些是否契合}",
-  "red_flags": {
-    "profile1": ["{可能导致关系紧张的Profile1的警告信号}"],
-    "profile2": ["{可能导致关系紧张的Profile2的警告信号}"]
-  },
-  "dealbreaker": "{描述可能导致关系终结的关键因素}",
-  "green_flags": {
-    "profile1": ["{关系中的积极元素Profile1}"],
-    "profile2": ["{关系中的积极元素Profile2}"]
-  },
-  "follower_flex": "{对比他们在社交媒体上的影响力}",
-  "risk_appetite": "{讨论他们在生活或决策中的风险偏好}",
-  "love_languages": "{分析他们各自偏好的爱的表达方式}",
-  "secret_desires": "{推测他们各自的潜在需求和渴望}",
-  "friends_forever": "{预测他们在友谊中的表现和长久性}",
-  "jealousy_levels": "{分析他们各自的嫉妒心}",
-  "attachment_style": "{描述他们的依恋类型}",
-  "values_alignment": "{评估他们在价值观上的一致性}",
-  "breakup_percentage": "{分手的可能性百分比}",
-  "overall_compatibility": "{整体契合度评分}",
-  "personality_type_match": "{性格类型的匹配度}",
-  "emotional_compatibility": "{情感契合度}",
-  "financial_compatibility": "{财务契合度}",
-  "communication_style_compatibility": "{沟通风格的一致性}"
-}
-`,
-          },
-          // {
-          //   "role": "assistant",
-          //   "content": "好的，我明白了"
-          // },
-
-          {
-            role: 'user',
-            content: `
-              数据如下：${JSON.stringify(user, null, 2)}
-              `,
-            // "content": `你好`
-          },
-          //   {
-          //     "role": "assistant",
-          //     "content": "好的，我明白了"
-          //   },
-          //   {
-          //     "role": "user",
-          //     "content": `
-          //     `
-
-          //     // "content": `你好`
-          // },
-        ],
-        project: 'DecentralGPT',
-        node_id: '16Uiu2HAmPKuJU5VE2PCnydyUn1VcTN2Lt59UDJFFEiRbb7h1x4CV',
-        stream: false,
-      }),
-    }).catch((err) => {
-      console.log('err', err)
-      return null
-    })
-
-    const json = await res?.json()
-    const resultString = json.data.choices[0].message.content
-    const result = JSON.parse(resultString)
-    console.log('res11111', result)
 
 
     // const result = {
@@ -351,16 +326,35 @@ Be creative like a horoscope teller.
     //   "emojis": "🚀👨‍💻🌐⚡⚡"
     // }
 
+    if(result) {
+      const statusObject = false
+      ? {
+          paidWordwareStarted: true,
+          paidWordwareCompleted: true,
+        }
+      : { wordwareStarted: true, wordwareCompleted: true }
+      await updateUser({
+        user: {
+          ...user,
+          ...statusObject,
+          analysis: result,
+        },
+      })
+    }
+
+  // Update user with the analysis from DeGPT
+  
+
     setSteps((prev) => ({ ...prev, wordwareCompleted: true }))
     
     return result as TwitterAnalysis
   }
 
-  const runPaidWordwareAnalysis = async (user: SelectUser, setSteps: React.Dispatch<React.SetStateAction<Steps>>, result: TwitterAnalysis | undefined) => {
-    setSteps((prev) => ({ ...prev, paidWordwareStarted: true }))
-    await handleTweetAnalysis({ username: user.username, full: true, currentAnalysis: result })
-    setSteps((prev) => ({ ...prev, paidWordwareCompleted: true }))
-  }
+  // const runPaidWordwareAnalysis = async (user: SelectUser, setSteps: React.Dispatch<React.SetStateAction<Steps>>, result: TwitterAnalysis | undefined) => {
+  //   setSteps((prev) => ({ ...prev, paidWordwareStarted: true }))
+  //   await handleTweetAnalysis({ username: user.username, full: true, currentAnalysis: result })
+  //   setSteps((prev) => ({ ...prev, paidWordwareCompleted: true }))
+  // }
 
   return { steps, result }
 }

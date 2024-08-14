@@ -5,6 +5,7 @@ import Quote from '@/app/quote'
 import WordwareLogo from '@/components/logo'
 import NewPairFormBothNames from '@/components/new-pair-form-both-names'
 import NewUsernameForm from '@/components/new-username-form'
+import TopList from './top-list'
 
 export const maxDuration = 181
 
@@ -13,19 +14,29 @@ const Page = () => {
     <section>
       <div className="flex flex-col md:flex-row">
         <div className="relative flex min-h-screen flex-col justify-center bg-[#F9FAFB] p-8 sm:p-12 md:w-1/2 md:p-16 lg:p-24">
-          <h2 className="flex items-center justify-start gap-4 pb-2">
-            Powered by{' '}
+          <h2 className="flex items-center justify-start ">
+            <span className="mr-4">Powered by</span>
             <a
               href="https://www.decentralgpt.org"
               target="_blank">
               <WordwareLogo
                 color="black"
                 width={20}
+                emblemOnly={false}
               />
             </a>
           </h2>
           <h2 className="flex items-center justify-start gap-4 pb-8">
-            GPU Support From DeepBrainChain
+            GPU Support From 
+
+            <a className='flex items-center'  href="https://www.deepbrainchain.org/"
+              target="_blank">
+            <img src='/deepchain.png' alt="" className='w-[22px]' />
+            <span className=' ml-[6px] text-gray-850 self-center text-sm font-medium dark:text-white'>DeepBrainChain</span>
+
+            </a>
+            
+   
           </h2>
           <div className="grow" />
 
@@ -35,7 +46,10 @@ const Page = () => {
                 discover your <br />
                 <span
                   className="bg-clip-text text-transparent"
-                  style={{ backgroundColor: '#CB9F9F' }}>
+                  // background-clip: text;
+                  // -webkit-background-clip: text;
+              
+                  style={{ backgroundColor: '#CB9F9F', backgroundClip: 'text',WebkitBackgroundClip : 'text'  }}>
                   {' '}
                   twitter{' '}
                 </span>
@@ -61,7 +75,7 @@ const Page = () => {
                 <br />
                 <span
                   className="bg-clip-text text-transparent"
-                  style={{ backgroundColor: '#6DB1BF' }}>
+                  style={{ backgroundColor: '#6DB1BF', backgroundClip: 'text',WebkitBackgroundClip : 'text'  }}>
                   {' '}
                   compatibility
                 </span>{' '}
@@ -101,7 +115,7 @@ const Page = () => {
               <p className="mt-8 text-sm">
                 <span
                   className="bg-clip-text font-bold text-transparent"
-                  style={{ backgroundColor: '#CB9F9F' }}>
+                  style={{ backgroundColor: '#CB9F9F' , backgroundClip: 'text',WebkitBackgroundClip : 'text' }}>
                   support the DeGPT  launch! <br />GPU From DeepBrainChain AI Public Chain
                 </span>
               </p>
@@ -138,7 +152,7 @@ const Page = () => {
           </div>
         </div>
       </div>
-      {/* <TopList /> */}
+      <TopList />
     </section>
   )
 }

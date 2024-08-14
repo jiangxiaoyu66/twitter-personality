@@ -137,7 +137,7 @@ const AnalysisCard: React.FC<AnalysisCardProps> = ({ names, unlocked, title, ico
                 <a
                   target="_blank"
                   className={cn(`flex-center gap-2 text-lg text-white`)}
-                  href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(`here's our Twitter Compatibility Analysis for @${username} and @${usernamePair}, created by an AI Agent built on @DecentralGPT.\n\n`)}&url=${encodeURIComponent(`https://x.degptac.ai/${username}/${usernamePair}?section=${contentKey}`)}`}>
+                  href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(`here's our Twitter Compatibility Analysis for @${username} and @${usernamePair}, created by an AI Agent built on @DecentralGPT.\n\n`)}&url=${encodeURIComponent(`https://x.degpt.ai/${username}/${usernamePair}?section=${contentKey}`)}`}>
                   <PiXLogo /> Share
                 </a>
               </Button>

@@ -10,7 +10,8 @@
     "dev": "next dev",
     "lint": "next lint",
     "start": "PORT=3001 next start",
-    "stripe:listen": "stripe listen --forward-to localhost:3000/api/stripe/webhook"
+    "stripe:listen": "stripe listen --forward-to localhost:3000/api/stripe/webhook",
+  "sync": "npm run build:old && rsync -avz -e ssh ./.next ubuntu@34.234.201.126:/home/ubuntu/twitter-wordware"
   },
   "dependencies": {
     "@aws-sdk/client-sqs": "^3.621.0",

@@ -56,7 +56,7 @@ const WordwareLogo = ({ emblemOnly = false, width }: { emblemOnly?: boolean; col
     //   className="rounded-full"
     // />
 
-    <div className="flex items-center gap-1">
+    <div className="flex items-center gap-2 justify-start">
       <img
         src={'/favicon.png'}
         alt={``}

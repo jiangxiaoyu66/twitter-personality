@@ -22,13 +22,13 @@ const Page = async () => {
           <h1 className="text-start text-4xl font-bold">Open Project</h1>
           <LastUpdate timestamp={timestamp} />
           <p>
-            Twitter Personality by Degpt is a fully Open Project, which not only the code is open source, but we&apos;re also happy to share all the critical
+            Twitter Personality by DeGPT is a fully Open Project, which not only the code is open source, but we&apos;re also happy to share all the critical
             metrics and statistics.
           </p>
         </div>
         <div className="space-y-4">
           <h2 className="text-start text-2xl font-bold">Creators</h2>
-          <p>This project was brought to life by Degpt.</p>
+          <p>This project was brought to life by DeGPT.</p>
           <Authors />
         </div>
 
