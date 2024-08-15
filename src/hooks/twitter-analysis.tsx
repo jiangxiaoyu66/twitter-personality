@@ -157,43 +157,6 @@ export const useTwitterAnalysis = (user: SelectUser, disableAnalysis: boolean = 
   const runWordwareAnalysis = async (user: SelectUser, setSteps: React.Dispatch<React.SetStateAction<Steps>>) => {
     setSteps((prev) => ({ ...prev, wordwareStarted: true }))
 
-
-    // const result = await handleTweetAnalysis({ username: user.username, full: false })
-
-    // const res = await fetch(`https://chat.degpt.ai/api/v0/chat/completion`, {
-    //   method: 'POST',
-    //   headers: {
-    //     // Authorization: `Bearer ${token}`,
-    //     'Content-Type': 'application/json',
-    //   },
-    //   body: JSON.stringify({
-    //     model: 'Qwen2-72B',
-    //     messages: [
-    //       {
-    //         role: 'system',
-    //         content: SinglePersonPrompt,
-    //       },
-    //       {
-    //         role: 'user',
-    //         content: `
-    //           数据如下：${JSON.stringify(user, null, 2)}
-    //           `,
-    //       },
-     
-    //     ],
-    //     project: 'DecentralGPT',
-    //     node_id: '16Uiu2HAmPKuJU5VE2PCnydyUn1VcTN2Lt59UDJFFEiRbb7h1x4CV',
-    //     stream: false,
-    //   }),
-    // }).catch((err) => {
-    //   console.log('err', err)
-    //   return null
-    // })
-    // const json = await res?.json()
-    // const resultString = json.data.choices[0].message.content
-
-    // const result = JSON.parse(resultString)
-    // console.log('res11111', result)
     const models = [
 
       {

@@ -86,6 +86,10 @@ const featuredUsernames = [
   'kozerafilip',
   'AlexReibman',
   'bentossell',
+  'heyibinance',
+'justinsuntron',
+'VitalikButerin',
+'deepbrainfeng'
 ]
 
 export const getTop = cache(async (): Promise<UserCardData[]> => {
@@ -153,6 +157,9 @@ export const handleNewUsername = async ({ username, redirectPath }: { username: 
 
   if (!data && error) {
     ;({ data, error } = await fetchUserDataBySocialData({ username }))
+
+
+
     if (!data) {
       console.log(`[${username}] ⚠️ Profile SocialData (2/3)`, error)
     } else {
@@ -186,7 +193,8 @@ export const handleNewUsername = async ({ username, redirectPath }: { username: 
   if (!data && error) {
     return {
       data: null,
-      error: error,
+      error: 'Retrieve the user failed!',
+      // error: error,
       found: false,
     }
   }

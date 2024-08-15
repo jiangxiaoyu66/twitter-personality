@@ -33,6 +33,7 @@ export const useCompatibilityAnalysis = (user1: SelectUser, user2: SelectUser, p
 
     console.log('user1Steps', user1Steps)
     console.log('user2Steps', user2Steps)
+    console.log('steps', steps)
 
     if (user1Steps.tweetScrapeCompleted && user2Steps.tweetScrapeCompleted && !steps.compatibilityAnalysisCompleted) {
       if (effectRan.current) return
@@ -52,69 +53,9 @@ export const useCompatibilityAnalysis = (user1: SelectUser, user2: SelectUser, p
       console.log('Not starting compatibility analysis', steps.compatibilityAnalysisStarted, Date.now() - pair.wordwareStartedTime.getTime())
       return
     }
-    // const response = await fetch('/api/wordware/pair', {
-    //   method: 'POST',
-    //   headers: { 'Content-Type': 'application/json' },
-    //   body: JSON.stringify(props),
-    // })
-
-    // const res = await fetch(`https://chat.degpt.ai/api/v0/chat/completion`, {
-    //   method: 'POST',
-    //   headers: {
-    //     // Authorization: `Bearer ${token}`,
-    //     'Content-Type': 'application/json',
-    //   },
-    //   body: JSON.stringify({
-    //     model: 'Qwen2-72B',
-    //     messages: [
-    //       {
-    //         role: 'system',
-    //         content: ParePrompt,
-    //       },
-    //       // {
-    //       //   "role": "assistant",
-    //       //   "content": "好的，我明白了"
-    //       // },
-
-    //       {
-    //         role: 'user',
-    //         content: `
-    //           第1位数据如下：${JSON.stringify(user1, null, 2)}
-
-    //         第二位数据如下：${JSON.stringify(user2, null, 2)}
-
-    //           `,
-    //         // "content": `你好`
-    //       },
-    //       //   {
-    //       //     "role": "assistant",
-    //       //     "content": "好的，我明白了"
-    //       //   },
-    //       //   {
-    //       //     "role": "user",
-    //       //     "content": `
-    //       //     `
-
-    //       //     // "content": `你好`
-    //       // },
-    //     ],
-    //     project: 'DecentralGPT',
-    //     node_id: '16Uiu2HAmPKuJU5VE2PCnydyUn1VcTN2Lt59UDJFFEiRbb7h1x4CV',
-    //     stream: false,
-    //   }),
-    // }).catch((err) => {
-    //   console.log('err', err)
-    //   return null
-    // })
-
-    // const json = await res?.json()
-    // const result = json.data.choices[0].message.content
-    // console.log('res11111', result)
-    // // return parsePartialJson(result)
 
 
     const models = [
-
       {
         name: "Meta LLM (Llama-3.1-405B)",
         model: "Llama-3.1-405B",
@@ -188,55 +129,31 @@ export const useCompatibilityAnalysis = (user1: SelectUser, user2: SelectUser, p
     
     if (result) {
       console.log('成功获取结果:', result);
+
+      const parsed = parsePartialJson(result) as any
+
+      await updatePair({
+        pair: {
+          ...pair,
+          wordwareStarted: true,
+          wordwareCompleted: true,
+          analysis: parsed,
+        },
+      })
+      setCompatibilityResult({ ...parsed })
+      console.log('🟣 | file: compatibility-analysis.tsx:64 | handleCompatibilityAnalysis | parsed:', parsed)
+
     } else {
       console.log('所有模型都失败了');
+          // 使用方法
       return 
     }
     
 
 
-    const parsed = parsePartialJson(result) as any
-
-    await updatePair({
-      pair: {
-        ...pair,
-        wordwareStarted: true,
-        wordwareCompleted: true,
-        analysis: parsed,
-      },
-    })
 
 
-    console.log('🟣 | file: compatibility-analysis.tsx:64 | handleCompatibilityAnalysis | parsed:', parsed)
 
-    setCompatibilityResult({ ...parsed })
-
-    // if (!response.body) {
-    //   console.error('No response body')
-    // }
-
-    // const reader = response.body.getReader()
-    // const decoder = new TextDecoder()
-    // let result = ''
-
-    // try {
-    //   while (true) {
-    //     const { done, value } = await reader.read()
-    //     if (done) break
-
-    //     result += decoder.decode(value, { stream: true })
-
-    //     const parsed = parsePartialJson(result) as any
-    //     console.log('🟣 | file: compatibility-analysis.tsx:64 | handleCompatibilityAnalysis | parsed:', parsed)
-
-    //     setCompatibilityResult({ ...parsed })
-    //   }
-    // } catch (error) {
-    //   console.error('Error reading stream', error)
-    // } finally {
-    //   reader.releaseLock()
-    //   return parsePartialJson(result)
-    // }
   }
 
   return {

@@ -48,6 +48,7 @@ const PairPage = async ({ params: { username, usernamePair } }: { params: { user
       <PairComponent
         users={[user1, user2]}
         pair={pair}
+        
       />
     </div>
   )

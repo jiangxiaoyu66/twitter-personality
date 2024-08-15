@@ -15,9 +15,9 @@ export const getURL = () => {
 //FALSE if paywall is disabled
 export const PAYWALL = false
 
-export const ParePrompt = `请根据以下两个用户的基本信息和他们的14条推文，生成一份详细的关系分析报告。报告应严格按照以下格式输出，并包括指定的内容。不需要其他描述信息，直接返回json数据就好！
-            输出的对象中的value，看我待会儿给你的内容原本主要是什么语言，你就返回什么语言。
-            给的结果尽量丰富，全面一些。其中，分析 Green Flags和 Red Flags的时候，请分析多个小点，控制在2到6个，具体数量请你看情况而定
+export const ParePrompt = `Based on the following basic information of two users and their 14 tweets, generate a detailed relationship analysis report. The report should be output strictly in the format below and include the specified content. No additional descriptive information is required, just return the JSON data!
+            The "value" in the output object should match the original language of the content I will give you later.
+            Make the results as rich and comprehensive as possible. When analyzing Green Flags and Red Flags, please analyze multiple small points, controlling between 2 to 6, and determine the specific number based on the situation.
 
             # **Instructions**
 
@@ -66,48 +66,49 @@ After understanding them, answer the following questions. You can make assumptio
 
 Be creative like a horoscope teller.
 
-输出的对象中的value，看我待会儿给你的内容原本主要是什么语言，你就返回什么语言，默认英文
+The "value" in the output object should match the original language of the content I will give you later, default is English.
 
-**输出格式：**
+**Output format:**
 
 {
   "mbti": {
     "profile1": "{MBTI1}",
     "profile2": "{MBTI2}"
   },
-  "about": "{概括两人总体关系的描述}",
-  "crazy": "{描述他们关系中较为疯狂或不可预测的元素}",
-  "drama": "{分析他们关系中可能出现的冲突或戏剧性事件}",
-  "emojis": "{用适当的表情符号总结他们关系的特点}",
-  "divorce": "{评估他们关系破裂的可能性}",
-  "marriage": "{预测他们婚姻的潜在发展}",
-  "3rd_wheel": "{分析第三者介入的可能性}",
-  "free_time": "{描述他们在空闲时间的兴趣爱好和活动，并评估这些是否契合}",
+  "about": "{Description summarizing the overall relationship of the two}",
+  "crazy": "{Description of the crazy or unpredictable elements in their relationship}",
+  "drama": "{Analysis of potential conflicts or dramatic events in their relationship}",
+  "emojis": "{Summary of the relationship’s characteristics using appropriate emojis}",
+  "divorce": "{Assessment of the likelihood of the relationship breaking up}",
+  "marriage": "{Prediction of potential marriage development}",
+  "3rd_wheel": "{Analysis of the possibility of a third party involvement}",
+  "free_time": "{Description of their hobbies and activities in their free time, and evaluation of how compatible these are}",
   "red_flags": {
-    "profile1": ["{可能导致关系紧张的Profile1的警告信号}"],
-    "profile2": ["{可能导致关系紧张的Profile2的警告信号}"]
+    "profile1": ["{Profile1’s warning signs that might cause tension in the relationship}"],
+    "profile2": ["{Profile2’s warning signs that might cause tension in the relationship}"]
   },
-  "dealbreaker": "{描述可能导致关系终结的关键因素}",
+  "dealbreaker": "{Description of key factors that could end the relationship}",
   "green_flags": {
-    "profile1": ["{关系中的积极元素Profile1}"],
-    "profile2": ["{关系中的积极元素Profile2}"]
+    "profile1": ["{Positive elements in the relationship from Profile1}"],
+    "profile2": ["{Positive elements in the relationship from Profile2}"]
   },
-  "follower_flex": "{对比他们在社交媒体上的影响力}",
-  "risk_appetite": "{讨论他们在生活或决策中的风险偏好}",
-  "love_languages": "{分析他们各自偏好的爱的表达方式}",
-  "secret_desires": "{推测他们各自的潜在需求和渴望}",
-  "friends_forever": "{预测他们在友谊中的表现和长久性}",
-  "jealousy_levels": "{分析他们各自的嫉妒心}",
-  "attachment_style": "{描述他们的依恋类型}",
-  "values_alignment": "{评估他们在价值观上的一致性}",
-  "breakup_percentage": "{分手的可能性百分比}",
-  "overall_compatibility": "{整体契合度评分}",
-  "personality_type_match": "{性格类型的匹配度}",
-  "emotional_compatibility": "{情感契合度}",
-  "financial_compatibility": "{财务契合度}",
-  "communication_style_compatibility": "{沟通风格的一致性}"
+  "follower_flex": "{Comparison of their social media influence}",
+  "risk_appetite": "{Discussion of their risk appetite in life or decisions}",
+  "love_languages": "{Analysis of their preferred love languages}",
+  "secret_desires": "{Speculation on their hidden needs and desires}",
+  "friends_forever": "{Prediction of their performance and longevity in friendship}",
+  "jealousy_levels": "{Analysis of their jealousy levels}",
+  "attachment_style": "{Description of their attachment styles}",
+  "values_alignment": "{Evaluation of their value alignment}",
+  "breakup_percentage": "{Percentage chance of a breakup}",
+  "overall_compatibility": "{Overall compatibility score}",
+  "personality_type_match": "{Compatibility of personality types}",
+  "emotional_compatibility": "{Emotional compatibility}",
+  "financial_compatibility": "{Financial compatibility}",
+  "communication_style_compatibility": "{Consistency of communication styles}"
 }
 `
+
 
 export const SinglePersonPrompt = `# **Instructions**
 
@@ -115,16 +116,14 @@ You are an experienced Astrologer who specializes in writing Horoscopes. Act lik
 
 Your job is to read the data provided below. This Twitter data is the only data you get to understand this person. You can make assumptions. Try to understand this person from their Twitter profile and all their tweets. You can sound a little controversial.
 
-After understanding them, answer the following questions. You can make assumptions.  
+After understanding them, answer the following questions. You can make assumptions.
 
 *   What is the name, Twitter username (without @ and in lowercase) of this person.
     
 *   Give a one-line description About this person, including age, sex, job, and other interesting info. This can be drawn from the profile picture. Start the sentence with "Based on our AI agent's analysis of your tweets...."
     
-
 *   5 strongest strengths and 5 biggest weaknesses (when describing weaknesses, be brutal).
     
-
 *   Give horoscope-like predictions about their love life and tell what specific qualities they should look for in a partner to make the relationship successful. Keep this positive and only a single paragraph.
     
 *   Give horoscope-like predictions about money and give an exact percentage (%) chance (range from 60% to 110%) that they become a multi-millionaire. You can increment the value by 1%. The percentage doesn't have to end with 5 or 0. Check silently - is the percentage you want to provide correct, based on your reasoning? If yes, produce it. If not, change it.
@@ -156,45 +155,26 @@ After understanding them, answer the following questions. You can make assumptio
 
 Be creative like a horoscope teller.
 
-输出的对象中的value，看我待会儿给你的内容原本主要是什么语言，你就返回什么语言，默认英文
+The "value" in the output object should match the original language of the content I will give you later. Default is English.
 
-**输出格式：**
+**Output format:**
 
 {
-  "mbti": {
-    "profile1": "{MBTI1}",
-    "profile2": "{MBTI2}"
-  },
-  "about": "{概括两人总体关系的描述}",
-  "crazy": "{描述他们关系中较为疯狂或不可预测的元素}",
-  "drama": "{分析他们关系中可能出现的冲突或戏剧性事件}",
-  "emojis": "{用适当的表情符号总结他们关系的特点}",
-  "divorce": "{评估他们关系破裂的可能性}",
-  "marriage": "{预测他们婚姻的潜在发展}",
-  "3rd_wheel": "{分析第三者介入的可能性}",
-  "free_time": "{描述他们在空闲时间的兴趣爱好和活动，并评估这些是否契合}",
-  "red_flags": {
-    "profile1": ["{可能导致关系紧张的Profile1的警告信号}"],
-    "profile2": ["{可能导致关系紧张的Profile2的警告信号}"]
-  },
-  "dealbreaker": "{描述可能导致关系终结的关键因素}",
-  "green_flags": {
-    "profile1": ["{关系中的积极元素Profile1}"],
-    "profile2": ["{关系中的积极元素Profile2}"]
-  },
-  "follower_flex": "{对比他们在社交媒体上的影响力}",
-  "risk_appetite": "{讨论他们在生活或决策中的风险偏好}",
-  "love_languages": "{分析他们各自偏好的爱的表达方式}",
-  "secret_desires": "{推测他们各自的潜在需求和渴望}",
-  "friends_forever": "{预测他们在友谊中的表现和长久性}",
-  "jealousy_levels": "{分析他们各自的嫉妒心}",
-  "attachment_style": "{描述他们的依恋类型}",
-  "values_alignment": "{评估他们在价值观上的一致性}",
-  "breakup_percentage": "{分手的可能性百分比}",
-  "overall_compatibility": "{整体契合度评分}",
-  "personality_type_match": "{性格类型的匹配度}",
-  "emotional_compatibility": "{情感契合度}",
-  "financial_compatibility": "{财务契合度}",
-  "communication_style_compatibility": "{沟通风格的一致性}"
+  "mbti": "{MBTI personality type of the individual}",
+  "about": "{Summary of the person based on their Twitter data}",
+  "love_life": "{Prediction of their love life}",
+  "money": "{Prediction of their financial prospects, including the chance of becoming a multi-millionaire}",
+  "health": "{Prediction of their health}",
+  "goal": "{What their biggest goal in life is}",
+  "work_style": "{Analysis of how they might be to work with}",
+  "pickup_lines": ["{Unique pickup line 1}", "{Unique pickup line 2}", "{Unique pickup line 3}"],
+  "famous_person": "{Name of a famous person who has a similar personality and why}",
+  "previous_life": "{Speculation on who or what this person could have been in a previous life}",
+  "animal": "{The animal that represents them and why}",
+  "under_50_item": "{The item under 50 dollars that would benefit them most and why}",
+  "career": "{The career they were born to do}",
+  "life_improvement": "{Suggestion on how they can improve their life}",
+  "roast": "{Clever roast based on their Twitter data}",
+  "emojis": "{Emojis that describe this person}"
 }
 `

@@ -1,7 +1,7 @@
 import React from 'react'
 import Link from 'next/link'
 
-import {  getTop } from '@/actions/actions'
+import {  getFeatured, getTop } from '@/actions/actions'
 import WordwareLogo from '@/components/logo'
 
 const wordwareBoys = ['kozerafilip', 'bertie_ai', 'unable0_']
@@ -85,7 +85,10 @@ const TopList = async () => {
   const top = await getTop()
 
   // Fetch featured users from the backend
-  // const featured = await getFeatured()
+  const featured = await getFeatured()
+
+  console.log("featured", featured);
+  
 
   return (
     <div className="flex-center w-full flex-col gap-16 p-4 py-40 sm:p-12 md:p-24">
@@ -95,10 +98,10 @@ const TopList = async () => {
         title="Most Popular"
       />
       {/* Display grid of featured users */}
-      {/* <UserGrid
+      <UserGrid
         users={featured}
         title="AI Agents Luminaries"
-      /> */}
+      />
     </div>
   )
 }

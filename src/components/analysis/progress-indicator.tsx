@@ -40,14 +40,14 @@ export const ProgressIndicator = ({
       />
 
       {!disableAnalysis && (
-        <>
+        <div className='flex items-center w-[400px]'>
           {/* Wordware analysis step */}
           <StepIndicator
             started={steps.wordwareStarted}
             completed={steps.wordwareCompleted}
             premium={true}
             unlocked={PAYWALL ? userUnlocked : true}
-            text="Creating your Personality"
+            text="Creating your Personality (About 1-5 minutes)"
           />
 
           {/* {!result?.loveLife && userUnlocked && (
@@ -59,7 +59,7 @@ export const ProgressIndicator = ({
               text="Extending your Personality"
             />
           )} */}
-        </>
+        </div>
       )}
     </div>
   )
