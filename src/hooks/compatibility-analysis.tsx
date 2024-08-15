@@ -92,9 +92,9 @@ export const useCompatibilityAnalysis = (user1: SelectUser, user2: SelectUser, p
                 {
                   role: 'user',
                   content: `
-                 第1位数据如下：${JSON.stringify(user1, null, 2)}
+                 The first data is as follows: ${JSON.stringify(user1, null, 0)}
 
-   第二位数据如下：${JSON.stringify(user2, null, 2)}
+   The second data is as follows:  ${JSON.stringify(user2, null, 0)}
 
                   `,
                 },
@@ -131,16 +131,19 @@ export const useCompatibilityAnalysis = (user1: SelectUser, user2: SelectUser, p
       console.log('成功获取结果:', result);
 
       const parsed = parsePartialJson(result) as any
+      if(parsed) {
 
-      await updatePair({
-        pair: {
-          ...pair,
-          wordwareStarted: true,
-          wordwareCompleted: true,
-          analysis: parsed,
-        },
-      })
-      setCompatibilityResult({ ...parsed })
+        await updatePair({
+          pair: {
+            ...pair,
+            wordwareStarted: true,
+            wordwareCompleted: true,
+            analysis: parsed,
+          },
+        })
+        setCompatibilityResult({ ...parsed })
+      }
+
       console.log('🟣 | file: compatibility-analysis.tsx:64 | handleCompatibilityAnalysis | parsed:', parsed)
 
     } else {

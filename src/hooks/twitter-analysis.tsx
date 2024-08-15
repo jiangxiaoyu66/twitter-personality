@@ -7,6 +7,7 @@ import { SelectUser } from '@/drizzle/schema'
 import { PAYWALL , SinglePersonPrompt} from '@/lib/config'
 // import { parsePartialJson } from '@/lib/parse-partial-json'
 import { toast } from 'sonner'
+import { parsePartialJson } from '@/lib/parse-partial-json'
 
 export type Steps = {
   profileScraped: boolean
@@ -195,7 +196,7 @@ export const useTwitterAnalysis = (user: SelectUser, disableAnalysis: boolean = 
                 {
                   role: 'user',
                   content: `
-                    数据如下：${JSON.stringify(user, null, 2)}
+                    The  data is as follows: ${JSON.stringify(user, null, 2)}
                   `,
                 },
               ],
@@ -208,7 +209,7 @@ export const useTwitterAnalysis = (user: SelectUser, disableAnalysis: boolean = 
           if (res.ok) {
             const datares = await res.json();
             if( datares.data.choices[0].message.content ) {
-              return JSON.parse(datares.data.choices[0].message.content); // 成功返回数据
+              return parsePartialJson(datares.data.choices[0].message.content); // 成功返回数据
             }
             else {
 
@@ -235,59 +236,7 @@ export const useTwitterAnalysis = (user: SelectUser, disableAnalysis: boolean = 
     
 
 
-
-
-    // const result = {
-    //   "name": "Raullen",
-    //   "twitter_username": "raullen",
-    //   "about": "Based on our AI agent's analysis of your tweets, Raullen is a male tech entrepreneur in his late 30s to early 40s. As the co-founder of IoTeX, a blockchain and IoT-focused company, Raullen has a deep interest in decentralized physical infrastructure (DEPIN). He has a Stoic philosophy and a PhD from the University of Waterloo. Before his current venture, he worked at tech giants Google and Uber. His profile picture suggests a professional, tech-savvy individual.",
-    //   "strengths": [
-    //     "Innovative thinker with a visionary mindset for DEPIN",
-    //     "Strong leadership skills demonstrated by co-founding IoTeX",
-    //     "Extensive knowledge and experience in tech, specifically IoT and blockchain",
-    //     "PhD-level education, indicating high intelligence and analytical skills",
-    //     "Proven track record of success in previous roles at Google and Uber"
-    //   ],
-    //   "weaknesses": [
-    //     "Potential over-reliance on technology as a solution to all problems",
-    //     "May struggle with balancing work and personal life due to intense focus on DEPIN",
-    //     "Could be perceived as too forward-thinking, alienating those who are less tech-savvy",
-    //     "Risk of burnout due to the intensity of his work in the tech industry",
-    //     "Might have difficulty delegating tasks, wanting to control all aspects of projects"
-    //   ],
-    //   "love_life": "In terms of love, Raullen’s innovative spirit and analytical mind will thrive with a partner who shares a passion for technology and the future. He should seek someone who can keep up with his fast-paced lifestyle and is equally driven. A partner with a Stoic mindset, who understands his dedication to work, and can provide a grounding influence will ensure a harmonious relationship. It’s important for Raullen to find a balance between his professional ambitions and personal connections, ensuring he makes time for the growth and nurturing of his romantic relationship.",
-    //   "multi_millionaire_percentage": "87%",
-    //   "health": "Looking at the stars, Raullen’s health is forecast to be robust and energetic, well-suited to the demands of his active lifestyle. His resilience, both mental and physical, is likely to keep him in good health. However, he should remain vigilant about the potential for stress-related issues due to his intense work habits. Regular exercise, a balanced diet, and mindfulness practices like Stoicism will serve him well in maintaining his health over the long term.",
-    //   "biggest_goal": "Raullen’s biggest goal in life is to pioneer the future of decentralized physical infrastructure (DEPIN), revolutionizing how the world operates. His vision is to create a global movement that integrates real-world devices with blockchain technology, fundamentally changing industries and improving people's lives.",
-    //   "colleague_perspective": "Working with Raullen, a colleague might find him to be an inspiring leader with a brilliant mind, deeply committed to his work. However, his intensity can sometimes mean he expects high standards from those around him, which can lead to pressure. He values efficiency and innovation, but his forward-thinking approach might sometimes clash with more traditional methods, making him a challenging but rewarding colleague to work alongside.",
-    //   "pickup_lines": [
-    //     "Are you an IoT device? Because you've just connected to my heart.",
-    //     "Is your name IoTeX? Because you're the network I want to be on.",
-    //     "Do you believe in DEPIN, or should I just decentralize your heart now?"
-    //   ],
-    //   "famous_personality": {
-    //     "name": "Elon Musk",
-    //     "reason": "Raullen shares a similar entrepreneurial spirit and a visionary mindset with Elon Musk, particularly in his dedication to pushing boundaries and shaping the future through technology. Both are deeply involved in cutting-edge sectors and have a strong background in tech companies, with a focus on innovation and disruption."
-    //   },
-    //   "previous_life": {
-    //     "name": "Leonardo da Vinci",
-    //     "reason": "In a previous life, Raullen might have been a Renaissance man like Leonardo da Vinci, known for his innovation, curiosity, and multidisciplinary pursuits. Da Vinci’s forward-thinking and wide-ranging interests mirror Raullen’s focus on tech and his aim to revolutionize the industry, making them kindred spirits across time."
-    //   },
-    //   "animal": {
-    //     "name": "Phoenix",
-    //     "reason": "Just as the mythical Phoenix rises from its ashes, Raullen’s career continuously evolves and transforms, symbolizing his resilience and ability to overcome challenges. His spirit is reborn with each new project, much like the Phoenix, making him a visionary leader in the tech industry."
-    //   },
-    //   "under_50_dollar_thing": {
-    //     "name": "A high-quality ergonomic mouse",
-    //     "reason": "Given his intense work in the tech industry, a high-quality ergonomic mouse can prevent strain and injury from long hours at the computer. This small investment under $50 will enhance his productivity and comfort, allowing him to focus on his ambitious projects without physical discomfort."
-    //   },
-    //   "career": {
-    //     "path": "Raullen was born to lead the technological revolution, specifically in the realm of decentralized physical infrastructure (DEPIN). His stars indicate a path paved with innovation and leadership in this field. To achieve his full potential, he should continue to invest in his skills, surround himself with a talented team, and remain adaptable to market changes. The stars suggest that by focusing on collaboration and maintaining a Stoic mindset, he can overcome any obstacles and realize his vision for a DEPIN-powered world."
-    //   },
-    //   "life_improvement_suggestion": "To make his life even better, Raullen should prioritize work-life balance. Incorporating regular breaks, quality time with loved ones, and leisure activities will ensure that his personal life thrives alongside his professional success. This alignment will not only enhance his well-being but also improve his productivity and creativity in his work.",
-    //   "roast": "Raullen, you’re so tech-savvy that you probably have a blockchain for your breakfast. Your tweets are so innovative, they’re giving the future a run for its money. But, don’t forget, even a Phoenix needs to rest from time to time!",
-    //   "emojis": "🚀👨‍💻🌐⚡⚡"
-    // }
+  
 
     if(result) {
       const statusObject = false
