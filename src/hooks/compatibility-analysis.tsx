@@ -86,15 +86,15 @@ export const useCompatibilityAnalysis = (user1: SelectUser, user2: SelectUser, p
               model: model.model,
               messages: [
                 {
-                  role: 'system',
+                  role: model.model === 'Gemma-2-27B' ? 'system' : 'user',
                   content: ParePrompt,
                 },
                 {
                   role: 'user',
                   content: `
-                 The first data is as follows: ${JSON.stringify(user1, null, 0)}
+                 The first data is as follows: ${JSON.stringify(user1, null, 0).replace('\\"', '"').replace('\\"', '"')}
 
-   The second data is as follows:  ${JSON.stringify(user2, null, 0)}
+   The second data is as follows:  ${JSON.stringify(user2, null, 0).replace('\\"', '"').replace('\\"', '"')}
 
                   `,
                 },

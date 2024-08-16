@@ -160,7 +160,7 @@ const AnalysisCard: React.FC<AnalysisCardProps> = ({ names, unlocked, title, ico
             <a
               href="https://wordware.ai?utm_source=twitterai"
               className="font-semibold underline-offset-4 hover:underline">
-              Wordware
+                DecentralGPT = DePIN+AI + AGI
             </a>{' '}
             - AI superpowers for builders
           </span>

@@ -196,7 +196,7 @@ export const useTwitterAnalysis = (user: SelectUser, disableAnalysis: boolean = 
                 {
                   role: 'user',
                   content: `
-                    The  data is as follows: ${JSON.stringify(user, null, 2)}
+                    The  data is as follows: ${JSON.stringify(user, null, 0).replace('\\"', '"')}
                   `,
                 },
               ],

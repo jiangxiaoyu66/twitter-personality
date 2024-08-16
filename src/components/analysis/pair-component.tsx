@@ -48,7 +48,7 @@ const PairComponent = ({ users, pair }: { users: SelectUser[]; pair: SelectPair 
           started={steps.compatibilityAnalysisStarted}
           completed={steps.compatibilityAnalysisCompleted}
           premium={!unlocked}
-          text="Compatibility Analysis"
+          text="Compatibility Analysis(About 1-5 minutes)"
         />
       )}
       {/* {!unlocked && <CompatibilityPriceButton price={paywallFlag as string} />} */}
